@@ -17,10 +17,6 @@ Emails you when a new release has been made on Github.
 - Github support
 - TODO: Docker support
 
-### Why
-
-I wanted to create an app fully functioning with the latest javascript and learn how to build a real app with graphql.
-
 ### Stack
 
 - [Next.js](https://github.com/zeit/next.js)
@@ -28,15 +24,66 @@ I wanted to create an app fully functioning with the latest javascript and learn
 - [Apollo](http://www.apollostack.com) - Graphql client
 - [styled components](https://www.styled-components.com/) - Styling
 - [Graphcool](https://www.graph.cool) - Graphql backend
+- [Auth0](http://auth0.com/) - Auth
 
 ## Contribute
 
 Pull requests are always welcome!
 
+In order to run the project you will need to setup [Graphcool](https://www.graph.cool/) and [Auth0](http://auth0.com/).
+
+#### Graphcool setup
+
+You need to apply the following schema to your graphcool project.
+
+```graphql
+type User implements Node {
+  id: ID! @isUnique
+  auth0UserId: String @isUnique
+  email: String! @isUnique
+  username: String!
+  avatar: String!
+  lastGithubSyncAt: DateTime
+  repositories: [Repository!]! @relation(name: "UserRepositories")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Repository implements Node {
+  id: ID! @isUnique
+  name: String!
+  avatar: String!
+  htmlUrl: String!
+  type: String!
+  refId: String!
+  users: [User!]! @relation(name: "UserRepositories")
+  releases: [Release!]! @relation(name: "RepositoryReleases")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Release implements Node {
+  id: ID! @isUnique
+  tagName: String!
+  htmlUrl: String!
+  type: String!
+  publishedAt: DateTime!
+  refId: String!
+  repository: Repository! @relation(name: "RepositoryReleases")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+```
+
+#### Auth0 setup
+
+[Connect your app to github](https://auth0.com/docs/connections/social/github).
+
+#### App setup
+
 1. `cp .env.default .env` Edit the .env file
-2. `cp ./project.graphcool.default ./project.graphcool` Edit the config file
-3. `yarn` Install nodejs dependencies
-4. `yarn dev` Start the app
+2. `yarn` Install nodejs dependencies
+3. `yarn dev` Start the app in dev mode
 
 Before submitting a pull request, please verify that your branch pass the tests with command `yarn test`.
 

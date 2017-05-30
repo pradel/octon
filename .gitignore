@@ -1,5 +1,4 @@
 node_modules
 client/.next
-client/config.js
 .env
 project.graphcool

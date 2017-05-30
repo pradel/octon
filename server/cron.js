@@ -4,8 +4,8 @@ const synchronizeNewReleases = require('./github/sync-new-releases');
 const synchronizeUsers = require('./github/sync-users');
 
 module.exports = async function startJobs() {
-  // Run each hour
-  schedule.scheduleJob('30 * * * *', async () => {
+  // Run each 3 hours
+  schedule.scheduleJob('30 */3 * * *', async () => {
     try {
       logger.log('info', 'cron: synchronizeNewReleases start');
       await synchronizeNewReleases();
@@ -15,8 +15,8 @@ module.exports = async function startJobs() {
     }
   });
 
-  // Run each 2 hours
-  schedule.scheduleJob('0 */2 * * *', async () => {
+  // Run each 6 hours
+  schedule.scheduleJob('0 */6 * * *', async () => {
     try {
       logger.log('info', 'cron: synchronizeUsers start');
       await synchronizeUsers();
