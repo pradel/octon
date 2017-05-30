@@ -1,0 +1,46 @@
+{
+  "name": "octon-graphcool",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon server/index.js --watch server",
+    "build": "next build ./client",
+    "start": "NODE_ENV=production node server/index.js",
+    "format": "prettier-eslint \"server/**/*.js\" \"client/**/*.js\"",
+    "lint": "eslint server client",
+    "test": "npm run lint"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "classnames": "^2.2.5",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "graphql-tag": "^2.2.0",
+    "isomorphic-fetch": "^2.2.1",
+    "marked": "^0.3.6",
+    "material-ui": "v1.0.0-alpha.15",
+    "material-ui-icons": "^1.0.0-alpha.3",
+    "next": "beta",
+    "node-schedule": "^1.2.3",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
+    "react-apollo": "^1.2.0",
+    "react-dom": "^15.5.4",
+    "recompose": "^0.23.4",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "styled-components": "^2.0.0",
+    "timeago-react": "^1.1.0",
+    "winston": "^2.3.1",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
+    "prettier-eslint-cli": "^3.6.1"
+  }
+}

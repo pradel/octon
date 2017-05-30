@@ -1,0 +1,50 @@
+# project: XXX
+# version: 0
+
+type File implements Node {
+  id: ID! @isUnique
+  contentType: String!
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  url: String! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type User implements Node {
+  id: ID! @isUnique
+  auth0UserId: String @isUnique
+  email: String! @isUnique
+  username: String!
+  avatar: String!
+  lastGithubSyncAt: DateTime
+  repositories: [Repository!]! @relation(name: "UserRepositories")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Repository implements Node {
+  id: ID! @isUnique
+  name: String!
+  avatar: String!
+  htmlUrl: String!
+  type: String!
+  refId: String!
+  users: [User!]! @relation(name: "UserRepositories")
+  releases: [Release!]! @relation(name: "RepositoryReleases")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Release implements Node {
+  id: ID! @isUnique
+  tagName: String!
+  htmlUrl: String!
+  type: String!
+  publishedAt: DateTime!
+  refId: String!
+  repository: Repository! @relation(name: "RepositoryReleases")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
