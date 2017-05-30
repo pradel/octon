@@ -1,5 +1,5 @@
 {
-  "name": "octon-graphcool",
+  "name": "octon",
   "private": true,
   "scripts": {
     "dev": "nodemon server/index.js --watch server",
@@ -13,10 +13,12 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "classnames": "^2.2.5",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "graphql-tag": "^2.2.1",
     "isomorphic-fetch": "^2.2.1",
+    "js-cookie": "^2.1.4",
     "marked": "^0.3.6",
     "material-ui": "v1.0.0-alpha.15",
     "material-ui-icons": "^1.0.0-alpha.3",

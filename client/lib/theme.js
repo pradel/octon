@@ -1,26 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { blue } from 'material-ui/styles/colors';
-import createPalette from 'material-ui/styles/palette';
-import colors from '../utils/colors';
+import { MuiThemeProvider } from 'material-ui/styles';
+import { getDefaultContext } from '../lib/mui-create-default-context';
 
-const theme = createMuiTheme({
-  palette: createPalette({
-    primary: {
-      ...blue,
-      500: colors.neon,
-    },
-  }),
-});
+class Theme extends Component {
+  componentDidMount() {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }
 
-const Theme = ({ children }) => (
-  <MuiThemeProvider theme={theme}>
-    <div>
-      {children}
-    </div>
-  </MuiThemeProvider>
-);
+  render() {
+    const { styleManager, theme } = getDefaultContext();
+    const { children } = this.props;
+    return (
+      <MuiThemeProvider styleManager={styleManager} theme={theme}>
+        <div>
+          {children}
+        </div>
+      </MuiThemeProvider>
+    );
+  }
+}
 
 Theme.propTypes = {
   children: PropTypes.node.isRequired,

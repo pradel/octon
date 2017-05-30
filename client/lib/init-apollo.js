@@ -11,7 +11,7 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
-function create(initialState) {
+function create(initialState, ctx) {
   const networkInterface = createNetworkInterface({
     uri: config.graphqlUrl,
   });
@@ -24,7 +24,7 @@ function create(initialState) {
           req.options.headers = {};
         }
 
-        const token = auth.getToken();
+        const token = auth.getToken(ctx);
         if (token) {
           req.options.headers.authorization = `Bearer ${token}`;
         }
@@ -40,16 +40,16 @@ function create(initialState) {
   });
 }
 
-export default function initApollo(initialState) {
+export default function initApollo(initialState, ctx) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {
-    return create(initialState);
+    return create(initialState, ctx);
   }
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create(initialState);
+    apolloClient = create(initialState, ctx);
   }
 
   return apolloClient;

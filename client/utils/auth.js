@@ -1,21 +1,24 @@
+import Cookie from 'js-cookie';
+
 export const auth0IdTokenKey = 'auth0IdToken';
 
 export default {
   setToken(token) {
     if (process.browser) {
-      window.localStorage.setItem(auth0IdTokenKey, token);
+      Cookie.set(auth0IdTokenKey, token);
     }
   },
 
-  getToken() {
-    return process.browser
-      ? window.localStorage.getItem(auth0IdTokenKey)
-      : undefined;
+  getToken(ctx) {
+    if (process.browser) {
+      return Cookie.get(auth0IdTokenKey);
+    }
+    return ctx.req.cookies[auth0IdTokenKey];
   },
 
   unsetToken() {
     if (process.browser) {
-      window.localStorage.removeItem(auth0IdTokenKey);
+      Cookie.remove(auth0IdTokenKey);
     }
   },
 };

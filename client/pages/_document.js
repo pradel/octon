@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, injectGlobal } from 'styled-components';
+import { getDefaultContext, setDefaultContext } from '../lib/mui-create-default-context';
 
 // Global styles
 // eslint-disable-next-line
@@ -22,6 +23,20 @@ injectGlobal`
 `;
 
 export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    setDefaultContext();
+    const page = ctx.renderPage();
+    const styleContext = getDefaultContext();
+    return {
+      ...page,
+      styles: (
+        <style id="jss-server-side" type="text/css">
+          {styleContext.styleManager.sheetsToString()}
+        </style>
+      ),
+    };
+  }
+
   render() {
     const sheet = new ServerStyleSheet();
     const main = sheet.collectStyles(<Main />);
@@ -60,6 +75,7 @@ export default class MyDocument extends Document {
             sizes="16x16"
             href="/static/favicon/favicon-16x16.png"
           />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>Octon</title>
           <meta
             name="description"

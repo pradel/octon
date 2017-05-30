@@ -45,9 +45,6 @@ export default (props = {}) => (ComposedComponent) => {
       loading,
       error,
     }),
-    options: () => ({
-      fetchPolicy: 'network-only',
-    }),
   };
 
   return graphql(userQuery, userQueryOptions)(WithUser);

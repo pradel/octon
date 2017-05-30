@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 require('isomorphic-fetch');
 const logger = require('winston');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const next = require('next');
 const { resolve } = require('path');
@@ -16,6 +17,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
+  server.use(cookieParser());
   server.use(bodyParser.json());
 
   server.post('/api/sync-stars', apiSyncUserRepositories);

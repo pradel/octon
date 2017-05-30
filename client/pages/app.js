@@ -163,7 +163,6 @@ const releasesQueryOptions = {
   }),
   options: ({ user }) => ({
     variables: { id: user && user.id },
-    fetchPolicy: 'network-only',
   }),
 };
 
