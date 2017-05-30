@@ -9,7 +9,7 @@
 
 Notifies you when a new release has been made on repositories you starred on Github.
 
-### Features
+## Features
 
 Emails you when a new release has been made on Github.
 - TODO: Daily mail
@@ -17,7 +17,7 @@ Emails you when a new release has been made on Github.
 - Github support
 - TODO: Docker support
 
-### Stack
+## Stack
 
 - [Next.js](https://github.com/zeit/next.js)
 - [React](https://facebook.github.io/react)
