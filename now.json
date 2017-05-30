@@ -1,0 +1,9 @@
+{
+  "name": "octon",
+  "alias": "octon",
+  "dotenv": true,
+  "files": [
+    "client",
+    "server"
+  ]
+}
