@@ -88,3 +88,6 @@ type Release implements Node {
 Before submitting a pull request, please verify that your branch pass the tests with command `yarn test`.
 
 Special thanks to [Quentin Saubadu](https://www.facebook.com/quentinsaubadu) for the logo and design!
+
+## License
+MIT © [Léo Pradel](https://github.com/pradel)
