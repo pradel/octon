@@ -37,7 +37,10 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
           />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.6.0/github-markdown.min.css" />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.6.0/github-markdown.min.css"
+          />
           <script src="https://cdn.auth0.com/js/lock/10.5/lock.min.js" />
           <link
             rel="icon"
@@ -58,7 +61,10 @@ export default class MyDocument extends Document {
             href="/static/favicon/favicon-16x16.png"
           />
           <title>Octon</title>
-          <meta name="description" content="Any new releases on your starred projects ? Octon will let you know." />
+          <meta
+            name="description"
+            content="Any new releases on your starred projects ? Octon will let you know."
+          />
           {styleTags}
         </Head>
         <body>

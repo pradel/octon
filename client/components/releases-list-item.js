@@ -29,7 +29,11 @@ class ReleasesListItem extends Component {
   render() {
     const { release, active } = this.props;
     return (
-      <StyledListItem button className={classnames({ active })} onClick={this.handleClick}>
+      <StyledListItem
+        button
+        className={classnames({ active })}
+        onClick={this.handleClick}
+      >
         <Avatar alt={release.repository.name} src={release.repository.avatar} />
         <ListItemText
           primary={release.repository.name}

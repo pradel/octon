@@ -2,7 +2,10 @@ const logger = require('winston');
 const { graphqlFetch } = require('./utils');
 const syncUserRepositories = require('./github/sync-user-repositories');
 
-exports.apiSyncUserRepositories = async function apiSyncUserRepositories(req, res) {
+exports.apiSyncUserRepositories = async function apiSyncUserRepositories(
+  req,
+  res,
+) {
   // TODO make a webhook from graphcool on user created
   if (!req.body.userId) {
     res.json({ success: false, message: 'Invalid params' });
@@ -18,7 +21,9 @@ exports.apiSyncUserRepositories = async function apiSyncUserRepositories(req, re
         }
       }
     `;
-    const data = await graphqlFetch(process.env.GRAPHCOOL_URL, query, { id: req.body.userId });
+    const data = await graphqlFetch(process.env.GRAPHCOOL_URL, query, {
+      id: req.body.userId,
+    });
     // TODO check if errors
     const user = data.data.User;
     // User not found

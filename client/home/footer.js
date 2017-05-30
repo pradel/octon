@@ -30,12 +30,16 @@ const Footer = () => (
       <div className="social">
         <p>
           Share Octon with your friends:{' '}
-          <a href="https://twitter.com/OctonApp" className="twitter-share">Twitter</a>
+          <a href="https://twitter.com/OctonApp" className="twitter-share">
+            Twitter
+          </a>
         </p>
       </div>
       <p className="info">
         Copyright © 2017 Octon<br />
-        <a href="https://github.com/pradel/octon/blob/master/LICENSE">Licence</a>
+        <a href="https://github.com/pradel/octon/blob/master/LICENSE">
+          Licence
+        </a>
         {' '}
         | Theme crafted
         {' '}

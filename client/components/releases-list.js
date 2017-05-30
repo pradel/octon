@@ -17,9 +17,15 @@ const StyledLoadMore = styled.div`
   margin-bottom: 10px;
 `;
 
-const ReleasesList = ({ releases, selectedId, onItemSelect, loadMoreReleases }) => (
+const ReleasesList = ({
+  releases,
+  selectedId,
+  onItemSelect,
+  loadMoreReleases,
+}) => (
   <List>
-    {releases.length === 0 && <StyledNoReleases>No recent releases</StyledNoReleases>}
+    {releases.length === 0 &&
+      <StyledNoReleases>No recent releases</StyledNoReleases>}
     {releases.map(release => (
       <ReleasesListItem
         key={release.id}
@@ -29,7 +35,9 @@ const ReleasesList = ({ releases, selectedId, onItemSelect, loadMoreReleases }) 
       />
     ))}
     {releases.length > 0 &&
-      <StyledLoadMore><Button raised onClick={loadMoreReleases}>Load more</Button></StyledLoadMore>}
+      <StyledLoadMore>
+        <Button raised onClick={loadMoreReleases}>Load more</Button>
+      </StyledLoadMore>}
   </List>
 );
 

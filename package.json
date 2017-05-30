@@ -5,7 +5,7 @@
     "dev": "nodemon server/index.js --watch server",
     "build": "next build ./client",
     "start": "NODE_ENV=production node server/index.js",
-    "format": "prettier-eslint \"server/**/*.js\" \"client/**/*.js\"",
+    "format": "prettier-eslint --write \"server/**/*.js\" \"client/**/*.js\"",
     "lint": "eslint server client",
     "test": "npm run lint"
   },

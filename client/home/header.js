@@ -40,8 +40,12 @@ const StyledHeader = styled.header`
 const Header = ({ handleLogin }) => (
   <StyledHeader>
     <header>
-      <div className="logo"><img alt="Octon logo" src="/static/img/logo.svg" height="36" /></div>
-      <div className="action"><button onClick={handleLogin}>SIGN UP</button></div>
+      <div className="logo">
+        <img alt="Octon logo" src="/static/img/logo.svg" height="36" />
+      </div>
+      <div className="action">
+        <button onClick={handleLogin}>SIGN UP</button>
+      </div>
     </header>
   </StyledHeader>
 );

@@ -28,7 +28,10 @@ class ReleaseContent extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.release) {
-      if (!this.props.release || this.props.release.refId !== nextProps.release.refId) {
+      if (
+        !this.props.release ||
+        this.props.release.refId !== nextProps.release.refId
+      ) {
         this.loadReleaseInfo(nextProps.release);
       }
     }
@@ -60,7 +63,10 @@ class ReleaseContent extends Component {
           <div>
             <List>
               <StyledListItem onClick={this.handleOpenNewTabRepository}>
-                <Avatar alt={release.repository.name} src={release.repository.avatar} />
+                <Avatar
+                  alt={release.repository.name}
+                  src={release.repository.avatar}
+                />
                 <ListItemText
                   primary={release.repository.name}
                   secondary={
@@ -74,11 +80,18 @@ class ReleaseContent extends Component {
               </StyledListItem>
             </List>
             <Content>
-              <StyledTitle type="title" component="a" href={release.htmlUrl} target="_blank">
+              <StyledTitle
+                type="title"
+                component="a"
+                href={release.htmlUrl}
+                target="_blank"
+              >
                 {release.tagName}
               </StyledTitle>
               {!changelog &&
-                <Typography type="caption">There is no changelog for this release</Typography>}
+                <Typography type="caption">
+                  There is no changelog for this release
+                </Typography>}
               {changelog &&
                 <Typography
                   className="markdown-body"

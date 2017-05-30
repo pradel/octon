@@ -41,12 +41,15 @@ class Header extends Component {
   };
 
   handleToggleMenu = event =>
-    this.setState({ menuOpen: !this.state.menuOpen, menuAnchorEl: event && event.currentTarget });
+    this.setState({
+      menuOpen: !this.state.menuOpen,
+      menuAnchorEl: event && event.currentTarget,
+    });
 
   handleLogout = () => {
     auth.unsetToken();
     Router.push('/');
-  }
+  };
 
   render() {
     const { user } = this.props;
@@ -58,10 +61,17 @@ class Header extends Component {
             <StyledLogo alt="Octon logo" src="/static/img/logo.svg" />
           </StyledLogoContainer>
           <StyledAvatar style={{ backgroundImage: `url(${user.avatar})` }} />
-          <IconButton onClick={this.handleToggleMenu} style={{ color: colors.neon }}>
+          <IconButton
+            onClick={this.handleToggleMenu}
+            style={{ color: colors.neon }}
+          >
             <MoreVert />
           </IconButton>
-          <Menu anchorEl={menuAnchorEl} open={menuOpen} onRequestClose={this.handleToggleMenu}>
+          <Menu
+            anchorEl={menuAnchorEl}
+            open={menuOpen}
+            onRequestClose={this.handleToggleMenu}
+          >
             <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
           </Menu>
         </Toolbar>

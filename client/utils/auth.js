@@ -8,7 +8,9 @@ export default {
   },
 
   getToken() {
-    return process.browser ? window.localStorage.getItem(auth0IdTokenKey) : undefined;
+    return process.browser
+      ? window.localStorage.getItem(auth0IdTokenKey)
+      : undefined;
   },
 
   unsetToken() {

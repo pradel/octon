@@ -1,15 +1,16 @@
 const rp = require('request-promise');
 const parseString = require('xml2js').parseString;
 
-const parseStringP = data => new Promise((resolve, reject) => {
-  parseString(data, (err, res) => {
-    if (err) {
-      reject(err);
-    } else {
-      resolve(res);
-    }
+const parseStringP = data =>
+  new Promise((resolve, reject) => {
+    parseString(data, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
   });
-});
 
 function formatTag(repository, tag) {
   // TODO get refId

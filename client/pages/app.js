@@ -77,7 +77,8 @@ class App extends Component {
         <Header user={user} />
         <ColLeft>
           {loading && <Loading />}
-          {loadingSync && <Loading text="Your stars are importing please wait a minute..." />}
+          {loadingSync &&
+            <Loading text="Your stars are importing please wait a minute..." />}
           {!loading &&
             !loadingSync &&
             <ReleasesList
@@ -151,7 +152,10 @@ const releasesQueryOptions = {
             return previousResult;
           }
           return Object.assign({}, previousResult, {
-            allReleases: [...previousResult.allReleases, ...fetchMoreResult.allReleases],
+            allReleases: [
+              ...previousResult.allReleases,
+              ...fetchMoreResult.allReleases,
+            ],
           });
         },
       });
@@ -163,4 +167,8 @@ const releasesQueryOptions = {
   }),
 };
 
-export default compose(withData, withUser(), graphql(releasesQuery, releasesQueryOptions))(App);
+export default compose(
+  withData,
+  withUser(),
+  graphql(releasesQuery, releasesQueryOptions),
+)(App);
