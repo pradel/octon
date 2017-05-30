@@ -1,6 +1,6 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
 import fetch from 'isomorphic-fetch';
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-unresolved, import/extensions
 import config from '../config';
 import auth from '../utils/auth';
 

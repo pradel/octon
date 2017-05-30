@@ -51,7 +51,10 @@ async function getAllUserStars(user, after) {
     body: JSON.stringify({ query }),
   });
   data = await data.json();
-  // TODO check if errors
+  if (data.errors) {
+    console.error(data.errors);
+    throw new Error('getAllUserStars failed');
+  }
   data = data.data.user.starredRepositories;
   // Format repositories
   let repositories = data.edges.map(({ node }) => formatRepository(node));
