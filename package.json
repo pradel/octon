@@ -15,7 +15,7 @@
     "classnames": "^2.2.5",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
-    "graphql-tag": "^2.2.0",
+    "graphql-tag": "^2.2.1",
     "isomorphic-fetch": "^2.2.1",
     "marked": "^0.3.6",
     "material-ui": "v1.0.0-alpha.15",

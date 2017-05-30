@@ -34,7 +34,16 @@ async function getTags(repository) {
 }
 
 module.exports = async function getLatestRelease(repository) {
-  const data = await getTags(repository);
+  let data;
+  try {
+    data = await getTags(repository);
+  } catch (err) {
+    // HTTP 451 Unavailable For Legal Reasons https://en.wikipedia.org/wiki/HTTP_451
+    if (err.statusCode === 451) {
+      return null;
+    }
+    throw err;
+  }
   // If no tags
   if (data.entry && data.entry[0]) {
     const tag = formatTag(repository, data.entry[0]);

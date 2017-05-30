@@ -2205,9 +2205,9 @@ graphql-anywhere@^3.0.0, graphql-anywhere@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-3.0.1.tgz#73531db861174c8f212eafb9f8e84944b38b4e5a"
 
-graphql-tag@^2.0.0, graphql-tag@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.2.0.tgz#9ea24f35a19aab1be1e55675928344d84d852905"
+graphql-tag@^2.0.0, graphql-tag@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.2.1.tgz#1da61feb6c6fc119ee8c579c4de424d389bee0c2"
 
 graphql@^0.9.3:
   version "0.9.6"

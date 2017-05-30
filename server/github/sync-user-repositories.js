@@ -51,8 +51,8 @@ async function getAllUserStars(user, after) {
     body: JSON.stringify({ query }),
   });
   data = await data.json();
-  if (data.errors) {
-    console.error(data.errors);
+  if (!data.data) {
+    console.error(data);
     throw new Error('getAllUserStars failed');
   }
   data = data.data.user.starredRepositories;
