@@ -2,10 +2,7 @@ const logger = require('winston');
 const { graphqlFetch } = require('./utils');
 const syncUserRepositories = require('./github/sync-user-repositories');
 
-exports.apiSyncUserRepositories = async function apiSyncUserRepositories(
-  req,
-  res,
-) {
+async function apiSyncUserRepositories(req, res) {
   // TODO make a webhook from graphcool on user created
   if (!req.body.userId) {
     res.json({ success: false, message: 'Invalid params' });
@@ -38,4 +35,6 @@ exports.apiSyncUserRepositories = async function apiSyncUserRepositories(
     logger.log('error', '/api/sync-stars', err);
     res.json({ success: false, message: err.message });
   }
-};
+}
+
+exports.apiSyncUserRepositories = apiSyncUserRepositories;

@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import config from '../config';
 
 class Lock {
