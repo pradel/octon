@@ -19,7 +19,7 @@ Emails you when a new release has been made on Github.
 
 ### Why
 
-I wanted to create an app fully functioning with the latest javascript and to learn how to build a real app with graphql.
+I wanted to create an app fully functioning with the latest javascript and learn how to build a real app with graphql.
 
 ### Stack
 
@@ -34,10 +34,9 @@ I wanted to create an app fully functioning with the latest javascript and to le
 Pull requests are always welcome!
 
 1. `cp .env.default .env` Edit the .env file
-2. `cp ./client/config.default.js ./client/config.js` Edit the config file
 2. `cp ./project.graphcool.default ./project.graphcool` Edit the config file
-2. `yarn` Install nodejs dependencies
-3. `yarn dev` Start the app
+3. `yarn` Install nodejs dependencies
+4. `yarn dev` Start the app
 
 Before submitting a pull request, please verify that your branch pass the tests with command `yarn test`.
 

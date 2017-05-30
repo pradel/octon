@@ -1,10 +1,7 @@
-// eslint-disable-next-line import/no-unresolved, import/extensions
-import config from '../config';
-
 class Lock {
   constructor() {
     // eslint-disable-next-line no-undef
-    this.lock = new Auth0Lock(config.auth0ClientId, config.auth0Domain);
+    this.lock = new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_CLIENT_DOMAIN);
   }
 
   login() {

@@ -1,7 +1,5 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
 import fetch from 'isomorphic-fetch';
-// eslint-disable-next-line import/no-unresolved, import/extensions
-import config from '../config';
 import auth from '../utils/auth';
 
 let apolloClient = null;
@@ -13,7 +11,7 @@ if (!process.browser) {
 
 function create(initialState, ctx) {
   const networkInterface = createNetworkInterface({
-    uri: config.graphqlUrl,
+    uri: process.env.GRAPHCOOL_URL,
   });
 
   // Add token to make authenticated requests

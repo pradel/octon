@@ -163,6 +163,8 @@ const releasesQueryOptions = {
   }),
   options: ({ user }) => ({
     variables: { id: user && user.id },
+    // Poll the list each 10 minutes
+    pollInterval: 10 * 60 * 1000,
   }),
 };
 
