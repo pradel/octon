@@ -19,7 +19,7 @@ export default (props = {}) => (ComposedComponent) => {
       // TODO handle error
       const { loading, ...rest } = this.props;
       if (loading) {
-        return <div>Laoding user data ...</div>;
+        return <div>Loading user data ...</div>;
       }
       return <ComposedComponent {...rest} />;
     }
