@@ -22,6 +22,7 @@
     "graphql-tag": "^2.2.2",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.1.4",
+    "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "material-ui": "v1.0.0-alpha.15",
     "material-ui-icons": "^1.0.0-alpha.3",

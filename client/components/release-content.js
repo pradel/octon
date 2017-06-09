@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import find from 'lodash/find';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import marked from 'marked';
@@ -43,9 +44,11 @@ class ReleaseContent extends Component {
     const url = `https://api.github.com/repos/${release.repository.name}/releases`;
     let data = await fetch(url);
     data = await data.json();
-    data = data[0];
-    if (data && data.tag_name === release.tagName) {
-      this.setState({ changelog: data.body });
+    if (data && data.length > 0) {
+      const changelog = find(data, elem => elem.tag_name === release.tagName);
+      if (changelog) {
+        this.setState({ changelog: marked(changelog.body) });
+      }
     }
   };
 
@@ -84,7 +87,7 @@ class ReleaseContent extends Component {
               {changelog &&
                 <Typography
                   className="markdown-body"
-                  dangerouslySetInnerHTML={{ __html: marked(changelog) }}
+                  dangerouslySetInnerHTML={{ __html: changelog }}
                 />}
             </Content>
           </div>}
