@@ -12,7 +12,7 @@ import colors from '../utils/colors';
 
 const StyledAppBar = styled(AppBar)`
   background-color: #1c1d1c !important;
-  box-shadow: none;
+  box-shadow: none !important;
 `;
 
 const StyledLogoContainer = styled.div`

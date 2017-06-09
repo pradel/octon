@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { injectGlobal } from 'styled-components';
 import Lock from '../utils/lock';
 import auth from '../utils/auth';
+import withData from '../lib/with-data';
 import Header from '../home/header';
 import Hero from '../home/hero';
 import Features from '../home/features';
@@ -70,4 +71,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default withData(Index);

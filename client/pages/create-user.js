@@ -44,7 +44,6 @@ class CreateUser extends Component {
   createUser = () => {
     const token = auth.getToken();
     this.lock.getLock().getProfile(token, async (err, data) => {
-      console.log(err, data);
       if (err) {
         // TODO handle err
         return;
@@ -57,6 +56,8 @@ class CreateUser extends Component {
           avatar: data.picture,
         };
         await this.props.createUser({ variables });
+        // Invalidate user query cache
+        await this.props.refetchUser();
         Router.push('/app');
       } catch (e) {
         // TODO print error
@@ -81,6 +82,7 @@ CreateUser.propTypes = {
   loading: PropTypes.bool,
   user: PropTypes.object,
   createUser: PropTypes.func.isRequired,
+  refetchUser: PropTypes.func.isRequired,
 };
 
 CreateUser.defaultProps = {
@@ -92,18 +94,16 @@ const userQuery = gql`
   query {
     user {
       id
-      username
-      email
-      avatar
     }
   }
 `;
 
 const userQueryOptions = {
-  props: ({ data: { loading, user, error } }) => ({
+  props: ({ data: { loading, user, error, refetch } }) => ({
     user,
     loading,
     error,
+    refetchUser: refetch,
   }),
   options: () => ({
     fetchPolicy: 'network-only',
@@ -114,9 +114,6 @@ const createUserMutation = gql`
   mutation ($idToken: String!, $username: String!, $email: String!, $avatar: String!) {
     createUser(authProvider: { auth0: { idToken: $idToken } }, username: $username, email: $email, avatar: $avatar) {
       id
-      username
-      email
-      avatar
     }
   }
 `;

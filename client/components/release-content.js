@@ -112,6 +112,7 @@ const releaseQuery = gql`
       htmlUrl
       publishedAt
       repository {
+        id
         avatar
         name
         htmlUrl
