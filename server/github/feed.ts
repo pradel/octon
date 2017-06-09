@@ -18,12 +18,16 @@ function formatTag(repository: Repository, tag: any): Release {
 }
 
 async function getTags(repository: Repository): Promise<any> {
-  const data: string = await rp(`https://github.com/${repository.name}/tags.atom`);
+  const data: string = await rp(
+    `https://github.com/${repository.name}/tags.atom`
+  );
   const xml = await parseString(data);
   return xml.feed;
 }
 
-export default async function getLatestRelease(repository: Repository): Promise<Release | null> {
+export default async function getLatestRelease(
+  repository: Repository
+): Promise<Release | null> {
   let data;
   try {
     data = await getTags(repository);
@@ -47,4 +51,4 @@ export default async function getLatestRelease(repository: Repository): Promise<
     }
   }
   return null;
-};
+}

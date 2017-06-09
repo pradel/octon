@@ -19,4 +19,4 @@ export default async function synchronizeUsers() {
   const promises = users.map(syncUserRepositories);
   data = await Promise.all(promises);
   logger.log('info', `${data.length} users updated`);
-};
+}

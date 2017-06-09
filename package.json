@@ -6,7 +6,8 @@
     "build": "tsc && next build ./client",
     "start": "NODE_ENV=production node server/index.js",
     "format-client": "prettier-eslint --write \"client/**/*.js\"",
-    "format-server": "prettier --single-quote --trailing-comma es5 --write \"{server}/**/*.ts\"",
+    "format-server": "prettier --single-quote --trailing-comma es5 --write \"server/**/*.ts\"",
+    "format": "yarn format-client && yarn format-server",
     "lint": "eslint client && tslint server/**/*.ts",
     "test": "npm run lint"
   },

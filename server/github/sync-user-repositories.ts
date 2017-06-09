@@ -17,7 +17,10 @@ function formatRepository(repo: GithubRepository): Repository {
   };
 }
 
-async function getAllUserStars(user: User, after?: string): Promise<Repository[]> {
+async function getAllUserStars(
+  user: User,
+  after?: string
+): Promise<Repository[]> {
   const query = `
     query getAllUserStars {
       user(login: "${user.username}") {
@@ -59,7 +62,9 @@ async function getAllUserStars(user: User, after?: string): Promise<Repository[]
   }
   data = data.data.user.starredRepositories;
   // Format repositories
-  let repositories: Repository[] = data.edges.map(({ node }) => formatRepository(node));
+  let repositories: Repository[] = data.edges.map(({ node }) =>
+    formatRepository(node)
+  );
   // Fetch for each new page
   // Limit to 1000 stars
   if (data.pageInfo.hasNextPage && repositories.length < 1000) {
@@ -69,7 +74,9 @@ async function getAllUserStars(user: User, after?: string): Promise<Repository[]
   return repositories;
 }
 
-async function getExistingRepositories(repositoriesRefIds: string[]): Promise<Repository[]> {
+async function getExistingRepositories(
+  repositoriesRefIds: string[]
+): Promise<Repository[]> {
   const query = `
     query allRepositories($repositoriesRefIds: [String!]) {
       allRepositories(filter: {
@@ -86,7 +93,10 @@ async function getExistingRepositories(repositoriesRefIds: string[]): Promise<Re
   return data.allRepositories;
 }
 
-async function addNewRepositories(user: User, repositories: Repository[]): Promise<Repository[]> {
+async function addNewRepositories(
+  user: User,
+  repositories: Repository[]
+): Promise<Repository[]> {
   const query = `
     mutation addNewRepositories($repositories: [UserrepositoriesRepository!]) {
       updateUser(id: "${user.id}", repositories: $repositories) {
@@ -104,7 +114,10 @@ async function addNewRepositories(user: User, repositories: Repository[]): Promi
   return data.updateUser.repositories;
 }
 
-async function linkRepositories(user: User, repositoriesIds: string[]): Promise<Repository[]> {
+async function linkRepositories(
+  user: User,
+  repositoriesIds: string[]
+): Promise<Repository[]> {
   const query = `
     mutation linkRepositories($repositoriesIds: [ID!], $lastGithubSyncAt: DateTime) {
       updateUser(id: "${user.id}", repositoriesIds: $repositoriesIds, lastGithubSyncAt: $lastGithubSyncAt) {
@@ -127,17 +140,18 @@ export default async function synchronizeUserStars(user: User): Promise<void> {
   // Fetch user starred repositories
   const githubRepositories = await getAllUserStars(user);
   // Find all repositories already in database
-  const repositoriesRefIds = githubRepositories.map((repo) => repo.refId);
+  const repositoriesRefIds = githubRepositories.map(repo => repo.refId);
   let existingRepositories = await getExistingRepositories(repositoriesRefIds);
   // Remove them to insert only new ones
-  let mapFunc = (repo) => repo.refId;
+  let mapFunc = repo => repo.refId;
   const existingRepositoriesRefIds = existingRepositories.map(mapFunc);
-  const filterFunction = (repo) => existingRepositoriesRefIds.indexOf(repo.refId) === -1;
+  const filterFunction = repo =>
+    existingRepositoriesRefIds.indexOf(repo.refId) === -1;
   const githubRepositoriesToInsert = githubRepositories.filter(filterFunction);
   // If repositories are not found in db add them
   if (githubRepositoriesToInsert.length > 0) {
     // For new repositories get latest release
-    mapFunc = (repository) => getLatestRelease(repository);
+    mapFunc = repository => getLatestRelease(repository);
     const promises = githubRepositoriesToInsert.map(mapFunc);
     const data = await Promise.all(promises);
     githubRepositoriesToInsert.forEach((repository, index) => {
@@ -145,14 +159,20 @@ export default async function synchronizeUserStars(user: User): Promise<void> {
         githubRepositoriesToInsert[index].releases[0] = data[index];
       }
     });
-    const insertedRepositories = await addNewRepositories(user, githubRepositoriesToInsert);
+    const insertedRepositories = await addNewRepositories(
+      user,
+      githubRepositoriesToInsert
+    );
     const message = `${user.username} - ${githubRepositoriesToInsert.length} repositories inserted`;
     logger.log('info', message);
     existingRepositories = existingRepositories.concat(insertedRepositories);
   }
   // TODO update db only if stars have changed
   // Link existing and new repositories to the user
-  const existingRepositoriesIds = existingRepositories.map((repo) => repo.id);
+  const existingRepositoriesIds = existingRepositories.map(repo => repo.id);
   await linkRepositories(user, existingRepositoriesIds);
-  logger.log('info', `${user.username} - ${existingRepositoriesIds.length} repositories linked`);
-};
+  logger.log(
+    'info',
+    `${user.username} - ${existingRepositoriesIds.length} repositories linked`
+  );
+}

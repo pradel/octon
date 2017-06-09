@@ -20,7 +20,7 @@ export default async function synchronizeNewReleases(): Promise<void> {
   const data: any = await request(process.env.GRAPHCOOL_URL, query);
   const repositories: Repository[] = data.allRepositories;
   // TODO make groups of 500 requests max
-  let promises = repositories.map((repository) => getLatestRelease(repository));
+  let promises = repositories.map(repository => getLatestRelease(repository));
   const releases = await Promise.all(promises);
   // Prepare createRelease mutation
   query = `
@@ -48,14 +48,18 @@ export default async function synchronizeNewReleases(): Promise<void> {
   releases.forEach((release: Release, index: number) => {
     if (release) {
       // Make a mutation for each new release
-      const mutation: Promise<Release> = request(process.env.GRAPHCOOL_URL, query, {
-        htmlUrl: release.htmlUrl,
-        publishedAt: release.publishedAt,
-        refId: release.refId,
-        repositoryId: repositories[index].id,
-        tagName: release.tagName,
-        type: release.type,
-      });
+      const mutation: Promise<Release> = request(
+        process.env.GRAPHCOOL_URL,
+        query,
+        {
+          htmlUrl: release.htmlUrl,
+          publishedAt: release.publishedAt,
+          refId: release.refId,
+          repositoryId: repositories[index].id,
+          tagName: release.tagName,
+          type: release.type,
+        }
+      );
       promises.push(mutation);
     }
   });
@@ -63,4 +67,4 @@ export default async function synchronizeNewReleases(): Promise<void> {
     const insertedReleases = await Promise.all(promises);
     logger.log('info', `${insertedReleases.length} releases inserted`);
   }
-};
+}

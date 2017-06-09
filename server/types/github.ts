@@ -5,5 +5,5 @@ export interface GithubRepository {
   owner: {
     login: string;
     avatarUrl: string;
-  }
+  };
 }

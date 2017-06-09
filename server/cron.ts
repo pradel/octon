@@ -25,4 +25,4 @@ export default async function startJobs() {
       logger.log('error', 'cron: synchronizeUsers error', err);
     }
   });
-};
+}
