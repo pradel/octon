@@ -1,13 +1,13 @@
-const dotenv = require('dotenv');
-require('isomorphic-fetch');
-const logger = require('winston');
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const next = require('next');
-const { resolve } = require('path');
-const { apiSyncUserRepositories } = require('./api');
-const cron = require('./cron');
+import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
+import * as dotenv from 'dotenv';
+import * as express from 'express';
+import 'isomorphic-fetch';
+import * as next from 'next';
+import { resolve } from 'path';
+import * as logger from 'winston';
+import { apiSyncUserRepositories } from './api';
+import cron from './cron';
 
 dotenv.config();
 const dev = process.env.NODE_ENV !== 'production';

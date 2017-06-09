@@ -2,11 +2,12 @@
   "name": "octon",
   "private": true,
   "scripts": {
-    "dev": "nodemon server/index.js --watch server",
-    "build": "next build ./client",
+    "dev": "concurrently \"tsc --watch\" \"nodemon lib/index.js --watch lib\"",
+    "build": "tsc && next build ./client",
     "start": "NODE_ENV=production node server/index.js",
-    "format": "prettier-eslint --write \"server/**/*.js\" \"client/**/*.js\"",
-    "lint": "eslint server client",
+    "format-client": "prettier-eslint --write \"client/**/*.js\"",
+    "format-server": "prettier --single-quote --trailing-comma es5 --write \"{server}/**/*.ts\"",
+    "lint": "eslint client && tslint server/**/*.ts",
     "test": "npm run lint"
   },
   "license": "MIT",
@@ -16,6 +17,7 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "graphql-request": "^1.1.2",
     "graphql-tag": "^2.2.2",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.1.4",
@@ -37,12 +39,22 @@
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
+    "@types/express": "^4.0.35",
+    "@types/node-schedule": "^1.2.0",
+    "@types/react": "^15.0.27",
+    "@types/request-promise": "^4.1.33",
+    "@types/xml2js": "^0.0.33",
     "babel-eslint": "^7.2.3",
+    "concurrently": "^3.4.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "prettier-eslint-cli": "^4.0.4"
+    "prettier": "^1.4.4",
+    "prettier-eslint-cli": "^4.1.0",
+    "tslint": "^5.4.3",
+    "tslint-config-prettier": "^1.0.0",
+    "typescript": "^2.3.4"
   }
 }

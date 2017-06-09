@@ -2,3 +2,4 @@ node_modules
 client/.next
 .env
 project.graphcool
+lib

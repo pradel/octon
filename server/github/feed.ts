@@ -1,39 +1,29 @@
-const rp = require('request-promise');
-const parseString = require('xml2js').parseString;
+import * as rp from 'request-promise';
+import { Release, Repository } from '../types';
+import { parseString } from '../utils';
 
-const parseStringP = data =>
-  new Promise((resolve, reject) => {
-    parseString(data, (err, res) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(res);
-      }
-    });
-  });
-
-function formatTag(repository, tag) {
+function formatTag(repository: Repository, tag: any): Release {
   // TODO get refId
   const link = tag.link[0].$.href;
   // Get tagName as last part of the url
   let tagName = link.split('/');
   tagName = decodeURIComponent(tagName[tagName.length - 1]);
   return {
+    htmlUrl: `https://github.com${link}`,
+    publishedAt: tag.updated[0],
     refId: tagName,
     tagName,
-    htmlUrl: `https://github.com${link}`,
     type: 'tag',
-    publishedAt: tag.updated[0],
   };
 }
 
-async function getTags(repository) {
-  const data = await rp(`https://github.com/${repository.name}/tags.atom`);
-  const xml = await parseStringP(data);
+async function getTags(repository: Repository): Promise<any> {
+  const data: string = await rp(`https://github.com/${repository.name}/tags.atom`);
+  const xml = await parseString(data);
   return xml.feed;
 }
 
-module.exports = async function getLatestRelease(repository) {
+export default async function getLatestRelease(repository: Repository): Promise<Release | null> {
   let data;
   try {
     data = await getTags(repository);

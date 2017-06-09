@@ -1,9 +1,9 @@
-const logger = require('winston');
-const schedule = require('node-schedule');
+import * as schedule from 'node-schedule';
+import * as logger from 'winston';
 const synchronizeNewReleases = require('./github/sync-new-releases');
 const synchronizeUsers = require('./github/sync-users');
 
-module.exports = async function startJobs() {
+export default async function startJobs() {
   // Run each 3 hours
   schedule.scheduleJob('30 */3 * * *', async () => {
     try {

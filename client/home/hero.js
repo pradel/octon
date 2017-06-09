@@ -38,8 +38,8 @@ const StyledHero = styled.div`
   }
 `;
 
-const Hero = ({ handleLogin }) => (
-  <StyledHero>
+const Hero = ({ handleLogin }) =>
+  (<StyledHero>
     <div className="content">
       <h1 className="title">Octon will keep you posted !</h1>
       <p className="intro">
@@ -47,8 +47,7 @@ const Hero = ({ handleLogin }) => (
       </p>
       <button className="btn" onClick={handleLogin}>Log in with github</button>
     </div>
-  </StyledHero>
-);
+  </StyledHero>);
 
 Hero.propTypes = {
   handleLogin: PropTypes.func.isRequired,
