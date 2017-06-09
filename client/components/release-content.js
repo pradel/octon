@@ -46,7 +46,7 @@ class ReleaseContent extends Component {
     data = await data.json();
     if (data && data.length > 0) {
       const changelog = find(data, elem => elem.tag_name === release.tagName);
-      if (changelog) {
+      if (changelog && changelog.body) {
         this.setState({ changelog: marked(changelog.body) });
       }
     }

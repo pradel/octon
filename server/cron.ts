@@ -25,4 +25,8 @@ export default function startJobs(): void {
       logger.log('error', 'cron: synchronizeUsers error', err);
     }
   });
+
+  // TODO check each day:
+  // - no repositories have same type and refId
+  // - no releases have same repository and refId
 }

@@ -9,6 +9,8 @@ import * as logger from 'winston';
 import { apiSyncUserRepositories } from './api';
 import cron from './cron';
 
+// TODO add sentry to catch errors (client + server)
+
 dotenv.config();
 const dev = process.env.NODE_ENV !== 'production';
 const dir = resolve(__dirname, '..', 'client');
