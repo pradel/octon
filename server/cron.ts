@@ -1,11 +1,11 @@
 import * as schedule from 'node-schedule';
 import * as logger from 'winston';
-const synchronizeNewReleases = require('./github/sync-new-releases');
-const synchronizeUsers = require('./github/sync-users');
+import synchronizeNewReleases from './github/sync-new-releases';
+import synchronizeUsers from './github/sync-users';
 
-export default async function startJobs() {
-  // Run each 3 hours
-  schedule.scheduleJob('30 */3 * * *', async () => {
+export default function startJobs(): void {
+  // Run each 1 hours
+  schedule.scheduleJob('30 */1 * * *', async () => {
     try {
       logger.log('info', 'cron: synchronizeNewReleases start');
       await synchronizeNewReleases();

@@ -2,9 +2,8 @@ import { request } from 'graphql-request';
 import * as logger from 'winston';
 import syncUserRepositories from './github/sync-user-repositories';
 import { User } from './types';
-import { graphqlFetch } from './utils';
 
-async function apiSyncUserRepositories(req, res) {
+async function apiSyncUserRepositories(req, res): Promise<void> {
   // TODO make a webhook from graphcool on user created
   if (!req.body.userId) {
     res.json({ success: false, message: 'Invalid params' });

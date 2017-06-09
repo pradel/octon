@@ -3,7 +3,7 @@ import * as logger from 'winston';
 import { User } from '../types';
 import syncUserRepositories from './sync-user-repositories';
 
-export default async function synchronizeUsers() {
+export default async function synchronizeUsers(): Promise<void> {
   // Get all users in db
   const query = `
     query allUsers {
@@ -14,7 +14,6 @@ export default async function synchronizeUsers() {
     }
   `;
   let data: any = await request(process.env.GRAPHCOOL_URL, query);
-  // TODO check if error
   const users: User[] = data.allUsers;
   const promises = users.map(syncUserRepositories);
   data = await Promise.all(promises);

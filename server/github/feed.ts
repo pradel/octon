@@ -2,8 +2,8 @@ import * as rp from 'request-promise';
 import { Release, Repository } from '../types';
 import { parseString } from '../utils';
 
-function formatTag(repository: Repository, tag: any): Release {
-  // TODO get refId
+function formatTag(tag: any): Release {
+  // TODO get real refId
   const link = tag.link[0].$.href;
   // Get tagName as last part of the url
   let tagName = link.split('/');
@@ -17,7 +17,7 @@ function formatTag(repository: Repository, tag: any): Release {
   };
 }
 
-async function getTags(repository: Repository): Promise<any> {
+async function getAtomTags(repository: Repository): Promise<any> {
   const data: string = await rp(
     `https://github.com/${repository.name}/tags.atom`
   );
@@ -30,7 +30,7 @@ export default async function getLatestRelease(
 ): Promise<Release | null> {
   let data;
   try {
-    data = await getTags(repository);
+    data = await getAtomTags(repository);
   } catch (err) {
     // HTTP 451 Unavailable For Legal Reasons https://en.wikipedia.org/wiki/HTTP_451
     if (err.statusCode === 451) {
@@ -40,7 +40,7 @@ export default async function getLatestRelease(
   }
   // If no tags
   if (data.entry && data.entry[0]) {
-    const tag = formatTag(repository, data.entry[0]);
+    const tag = formatTag(data.entry[0]);
     // If no releases return new one
     if (repository.releases.length === 0) {
       return tag;
