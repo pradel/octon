@@ -8,7 +8,7 @@
     "format-client": "prettier-eslint --write \"client/**/*.js\"",
     "format-server": "prettier --single-quote --trailing-comma es5 --write \"server/**/*.ts\"",
     "format": "yarn format-client && yarn format-server",
-    "lint": "eslint client && tslint server/**/*.ts",
+    "lint": "eslint client && tslint server/**/*.ts client/**/*.tsx",
     "test": "npm run lint"
   },
   "license": "MIT",
@@ -57,6 +57,7 @@
     "prettier-eslint-cli": "^4.1.0",
     "tslint": "^5.4.3",
     "tslint-config-prettier": "^1.0.0",
+    "tslint-react": "^3.0.0",
     "typescript": "^2.3.4"
   }
 }

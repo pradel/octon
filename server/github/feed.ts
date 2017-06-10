@@ -1,6 +1,6 @@
 import * as rp from 'request-promise';
 import { Release, Repository } from '../types';
-import { parseString } from '../utils';
+import { parseXmlString } from '../utils';
 
 function formatTag(tag: any): Release {
   // TODO get real refId
@@ -21,7 +21,7 @@ async function getAtomTags(repository: Repository): Promise<any> {
   const data: string = await rp(
     `https://github.com/${repository.name}/tags.atom`
   );
-  const xml = await parseString(data);
+  const xml = await parseXmlString(data);
   return xml.feed;
 }
 
