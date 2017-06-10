@@ -24,6 +24,20 @@ app.prepare().then(() => {
 
   server.post('/api/sync-stars', apiSyncUserRepositories);
 
+  server.get(
+    '/release/:repositoryType/:repositoryName1/:repositoryName2/:releaseTagName',
+    (req, res) => {
+      const actualPage = '/release';
+      const queryParams = {
+        repositoryType: req.params.repositoryType,
+        repositoryName: `${req.params.repositoryName1}/${req.params
+          .repositoryName2}`,
+        releaseTagName: req.params.releaseTagName,
+      };
+      app.render(req, res, actualPage, queryParams);
+    }
+  );
+
   server.get('*', (req, res) => {
     handle(req, res);
   });

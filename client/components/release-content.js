@@ -53,6 +53,7 @@ class ReleaseContent extends Component {
   };
 
   render() {
+    // TODO 404
     const { release, loading } = this.props;
     const { changelog } = this.state;
     return (
@@ -107,8 +108,14 @@ ReleaseContent.defaultProps = {
 };
 
 const releaseQuery = gql`
-  query Release($id: ID) {
-    Release(id: $id) {
+  query allReleases($repositoryType: String!, $repositoryName: String!, $releaseTagName: String!) {
+    allReleases(filter: {
+      tagName: $releaseTagName
+      repository: {
+        name: $repositoryName
+        type: $repositoryType
+      }
+    }) {
       id
       refId
       tagName
@@ -125,13 +132,13 @@ const releaseQuery = gql`
 `;
 
 const releaseQueryOptions = {
-  props: ({ data: { loading, Release, error } }) => ({
-    release: Release,
+  props: ({ data: { loading, allReleases, error } }) => ({
+    release: allReleases && allReleases[0],
     loading,
     error,
   }),
-  options: ({ releaseId }) => ({
-    variables: { id: releaseId },
+  options: ({ repositoryType, repositoryName, releaseTagName }) => ({
+    variables: { repositoryType, repositoryName, releaseTagName },
   }),
 };
 

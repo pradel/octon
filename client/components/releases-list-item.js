@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 import styled from 'styled-components';
 import Avatar from 'material-ui/Avatar';
 import Typography from 'material-ui/Typography';
@@ -23,13 +24,19 @@ const StyledLink = styled.a`
 
 class ReleasesListItem extends Component {
   handleClick = () => {
-    this.props.onClick(this.props.release.id);
+    const { release } = this.props;
+    Router.push(
+      `/release?repositoryType=${release.repository.type}&repositoryName=${release.repository
+        .name}&releaseTagName=${release.tagName}`,
+      `/release/${release.repository.type}/${release.repository.name}/${release.tagName}`,
+    );
   };
 
   render() {
-    const { release, active } = this.props;
+    // TODO active class see https://github.com/zeit/next.js/issues/2032
+    const { release } = this.props;
     return (
-      <StyledListItem button className={classnames({ active })} onClick={this.handleClick}>
+      <StyledListItem button /* className={classnames({ active })} */ onClick={this.handleClick}>
         <Avatar alt={release.repository.name} src={release.repository.avatar} />
         <ListItemText
           primary={release.repository.name}
@@ -57,8 +64,6 @@ class ReleasesListItem extends Component {
 
 ReleasesListItem.propTypes = {
   release: PropTypes.object.isRequired,
-  active: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
-export default onlyUpdateForKeys(['release', 'active'])(ReleasesListItem);
+export default onlyUpdateForKeys(['release'])(ReleasesListItem);
