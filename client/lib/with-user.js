@@ -17,6 +17,7 @@ export default (props = {}) => (ComposedComponent) => {
 
     render() {
       // TODO handle error
+      // TODO nice loading
       const { loading, ...rest } = this.props;
       if (loading) {
         return <div>Loading user data ...</div>;

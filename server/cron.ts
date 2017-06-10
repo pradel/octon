@@ -1,11 +1,11 @@
-const logger = require('winston');
-const schedule = require('node-schedule');
-const synchronizeNewReleases = require('./github/sync-new-releases');
-const synchronizeUsers = require('./github/sync-users');
+import * as schedule from 'node-schedule';
+import * as logger from 'winston';
+import synchronizeNewReleases from './github/sync-new-releases';
+import synchronizeUsers from './github/sync-users';
 
-module.exports = async function startJobs() {
-  // Run each 3 hours
-  schedule.scheduleJob('30 */3 * * *', async () => {
+export default function startJobs(): void {
+  // Run each 1 hours
+  schedule.scheduleJob('30 */1 * * *', async () => {
     try {
       logger.log('info', 'cron: synchronizeNewReleases start');
       await synchronizeNewReleases();
@@ -25,4 +25,8 @@ module.exports = async function startJobs() {
       logger.log('error', 'cron: synchronizeUsers error', err);
     }
   });
-};
+
+  // TODO check each day:
+  // - no repositories have same type and refId
+  // - no releases have same repository and refId
+}

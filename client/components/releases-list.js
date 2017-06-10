@@ -17,29 +17,22 @@ const StyledLoadMore = styled.div`
   margin-bottom: 10px;
 `;
 
-const ReleasesList = ({
-  releases,
-  selectedId,
-  onItemSelect,
-  loadMoreReleases,
-}) => (
-  <List>
-    {releases.length === 0 &&
-      <StyledNoReleases>No recent releases</StyledNoReleases>}
-    {releases.map(release => (
-      <ReleasesListItem
+const ReleasesList = ({ releases, selectedId, onItemSelect, loadMoreReleases }) =>
+  (<List>
+    {releases.length === 0 && <StyledNoReleases>No recent releases</StyledNoReleases>}
+    {releases.map(release =>
+      (<ReleasesListItem
         key={release.id}
         release={release}
         active={release.id === selectedId}
         onClick={onItemSelect}
-      />
-    ))}
+      />),
+    )}
     {releases.length > 0 &&
       <StyledLoadMore>
         <Button raised onClick={loadMoreReleases}>Load more</Button>
       </StyledLoadMore>}
-  </List>
-);
+  </List>);
 
 ReleasesList.propTypes = {
   releases: PropTypes.array.isRequired,

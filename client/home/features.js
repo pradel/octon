@@ -27,12 +27,12 @@ const StyledFeatures = styled.div`
   }
 `;
 
-const Features = () => (
-  <StyledFeatures>
+const Features = () =>
+  (<StyledFeatures>
     <div className="content">
       <h3>Your personal assistant</h3>
       <p className="text">
-        Octon is a personal assistant {'that\'ll'} notify you when new releases have been pushed on
+        Octon is a personal assistant {"that'll"} notify you when new releases have been pushed on
         {' '}
         <b>github</b>
         {' '}
@@ -59,7 +59,6 @@ const Features = () => (
         </div>
       </div>
     </div>
-  </StyledFeatures>
-);
+  </StyledFeatures>);
 
 export default Features;

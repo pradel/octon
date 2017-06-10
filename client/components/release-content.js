@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import find from 'lodash/find';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import marked from 'marked';
@@ -28,10 +29,7 @@ class ReleaseContent extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.release) {
-      if (
-        !this.props.release ||
-        this.props.release.refId !== nextProps.release.refId
-      ) {
+      if (!this.props.release || this.props.release.refId !== nextProps.release.refId) {
         this.loadReleaseInfo(nextProps.release);
       }
     }
@@ -46,9 +44,11 @@ class ReleaseContent extends Component {
     const url = `https://api.github.com/repos/${release.repository.name}/releases`;
     let data = await fetch(url);
     data = await data.json();
-    data = data[0];
-    if (data && data.tag_name === release.tagName) {
-      this.setState({ changelog: data.body });
+    if (data && data.length > 0) {
+      const changelog = find(data, elem => elem.tag_name === release.tagName);
+      if (changelog && changelog.body) {
+        this.setState({ changelog: marked(changelog.body) });
+      }
     }
   };
 
@@ -63,10 +63,7 @@ class ReleaseContent extends Component {
           <div>
             <List>
               <StyledListItem onClick={this.handleOpenNewTabRepository}>
-                <Avatar
-                  alt={release.repository.name}
-                  src={release.repository.avatar}
-                />
+                <Avatar alt={release.repository.name} src={release.repository.avatar} />
                 <ListItemText
                   primary={release.repository.name}
                   secondary={
@@ -80,12 +77,7 @@ class ReleaseContent extends Component {
               </StyledListItem>
             </List>
             <Content>
-              <StyledTitle
-                type="title"
-                component="a"
-                href={release.htmlUrl}
-                target="_blank"
-              >
+              <StyledTitle type="title" component="a" href={release.htmlUrl} target="_blank">
                 {release.tagName}
               </StyledTitle>
               {!changelog &&
@@ -95,7 +87,7 @@ class ReleaseContent extends Component {
               {changelog &&
                 <Typography
                   className="markdown-body"
-                  dangerouslySetInnerHTML={{ __html: marked(changelog) }}
+                  dangerouslySetInnerHTML={{ __html: changelog }}
                 />}
             </Content>
           </div>}
@@ -123,6 +115,7 @@ const releaseQuery = gql`
       htmlUrl
       publishedAt
       repository {
+        id
         avatar
         name
         htmlUrl

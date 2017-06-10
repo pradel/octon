@@ -1,8 +1,9 @@
-const logger = require('winston');
-const { graphqlFetch } = require('../utils');
-const getLatestRelease = require('./feed');
+import { request } from 'graphql-request';
+import * as logger from 'winston';
+import { Release, Repository } from '../types';
+import getLatestRelease from './feed';
 
-module.exports = async function synchronizeNewReleases() {
+export default async function synchronizeNewReleases(): Promise<void> {
   // Get all repositories in db
   // TODO sort by name
   let query = `
@@ -16,9 +17,8 @@ module.exports = async function synchronizeNewReleases() {
       }
     }
   `;
-  const data = await graphqlFetch(process.env.GRAPHCOOL_URL, query);
-  // TODO check if error
-  const repositories = data.data.allRepositories;
+  const data: any = await request(process.env.GRAPHCOOL_URL, query);
+  const repositories: Repository[] = data.allRepositories;
   // TODO make groups of 500 requests max
   let promises = repositories.map(repository => getLatestRelease(repository));
   const releases = await Promise.all(promises);
@@ -45,23 +45,26 @@ module.exports = async function synchronizeNewReleases() {
     }
   `;
   promises = [];
-  releases.forEach((release, index) => {
+  releases.forEach((release: Release, index: number) => {
     if (release) {
       // Make a mutation for each new release
-      const mutation = graphqlFetch(process.env.GRAPHCOOL_URL, query, {
-        htmlUrl: release.htmlUrl,
-        publishedAt: release.publishedAt,
-        refId: release.refId,
-        tagName: release.tagName,
-        type: release.type,
-        repositoryId: repositories[index].id,
-      });
+      const mutation: Promise<Release> = request(
+        process.env.GRAPHCOOL_URL,
+        query,
+        {
+          htmlUrl: release.htmlUrl,
+          publishedAt: release.publishedAt,
+          refId: release.refId,
+          repositoryId: repositories[index].id,
+          tagName: release.tagName,
+          type: release.type,
+        }
+      );
       promises.push(mutation);
     }
   });
   if (promises.length > 0) {
     const insertedReleases = await Promise.all(promises);
-    // TODO check errors
     logger.log('info', `${insertedReleases.length} releases inserted`);
   }
-};
+}

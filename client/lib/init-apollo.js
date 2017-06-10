@@ -35,6 +35,7 @@ function create(initialState, ctx) {
     initialState,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     networkInterface,
+    dataIdFromObject: o => `${o.__typename}-${o.id}`, // eslint-disable-line no-underscore-dangle
   });
 }
 

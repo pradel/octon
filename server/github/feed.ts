@@ -1,42 +1,36 @@
-const rp = require('request-promise');
-const parseString = require('xml2js').parseString;
+import * as rp from 'request-promise';
+import { Release, Repository } from '../types';
+import { parseXmlString } from '../utils';
 
-const parseStringP = data =>
-  new Promise((resolve, reject) => {
-    parseString(data, (err, res) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(res);
-      }
-    });
-  });
-
-function formatTag(repository, tag) {
-  // TODO get refId
+function formatTag(tag: any): Release {
+  // TODO get real refId
   const link = tag.link[0].$.href;
   // Get tagName as last part of the url
   let tagName = link.split('/');
   tagName = decodeURIComponent(tagName[tagName.length - 1]);
   return {
+    htmlUrl: `https://github.com${link}`,
+    publishedAt: tag.updated[0],
     refId: tagName,
     tagName,
-    htmlUrl: `https://github.com${link}`,
     type: 'tag',
-    publishedAt: tag.updated[0],
   };
 }
 
-async function getTags(repository) {
-  const data = await rp(`https://github.com/${repository.name}/tags.atom`);
-  const xml = await parseStringP(data);
+async function getAtomTags(repository: Repository): Promise<any> {
+  const data: string = await rp(
+    `https://github.com/${repository.name}/tags.atom`
+  );
+  const xml = await parseXmlString(data);
   return xml.feed;
 }
 
-module.exports = async function getLatestRelease(repository) {
+export default async function getLatestRelease(
+  repository: Repository
+): Promise<Release | null> {
   let data;
   try {
-    data = await getTags(repository);
+    data = await getAtomTags(repository);
   } catch (err) {
     // HTTP 451 Unavailable For Legal Reasons https://en.wikipedia.org/wiki/HTTP_451
     if (err.statusCode === 451) {
@@ -46,7 +40,7 @@ module.exports = async function getLatestRelease(repository) {
   }
   // If no tags
   if (data.entry && data.entry[0]) {
-    const tag = formatTag(repository, data.entry[0]);
+    const tag = formatTag(data.entry[0]);
     // If no releases return new one
     if (repository.releases.length === 0) {
       return tag;
@@ -57,4 +51,4 @@ module.exports = async function getLatestRelease(repository) {
     }
   }
   return null;
-};
+}

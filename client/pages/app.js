@@ -77,8 +77,7 @@ class App extends Component {
         <Header user={user} />
         <ColLeft>
           {loading && <Loading />}
-          {loadingSync &&
-            <Loading text="Your stars are importing please wait a minute..." />}
+          {loadingSync && <Loading text="Your stars are importing please wait a minute..." />}
           {!loading &&
             !loadingSync &&
             <ReleasesList
@@ -129,6 +128,7 @@ const releasesQuery = gql`
       htmlUrl
       publishedAt
       repository {
+        id
         avatar
         name
       }
@@ -136,6 +136,7 @@ const releasesQuery = gql`
   }
 `;
 
+// TODO skip query if no user
 const releasesQueryOptions = {
   props: ({ data: { loading, allReleases, error, refetch, fetchMore } }) => ({
     releases: allReleases,
@@ -152,10 +153,7 @@ const releasesQueryOptions = {
             return previousResult;
           }
           return Object.assign({}, previousResult, {
-            allReleases: [
-              ...previousResult.allReleases,
-              ...fetchMoreResult.allReleases,
-            ],
+            allReleases: [...previousResult.allReleases, ...fetchMoreResult.allReleases],
           });
         },
       });
@@ -163,13 +161,9 @@ const releasesQueryOptions = {
   }),
   options: ({ user }) => ({
     variables: { id: user && user.id },
-    // Poll the list each 10 minutes
-    pollInterval: 10 * 60 * 1000,
+    // Poll the list each 30 minutes
+    pollInterval: 30 * 60 * 1000,
   }),
 };
 
-export default compose(
-  withData,
-  withUser(),
-  graphql(releasesQuery, releasesQueryOptions),
-)(App);
+export default compose(withData, withUser(), graphql(releasesQuery, releasesQueryOptions))(App);

@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "arrow-parens":false,
+    "interface-name": [false],
+    "object-literal-sort-keys": false,
+    "ordered-imports": [false]
+  }
+}
