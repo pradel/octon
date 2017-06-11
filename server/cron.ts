@@ -29,4 +29,5 @@ export default function startJobs(): void {
   // TODO check each day:
   // - no repositories have same type and refId
   // - no releases have same repository and refId
+  // - no repositories without at least one user
 }

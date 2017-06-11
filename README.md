@@ -44,6 +44,8 @@ type User implements Node {
   username: String!
   avatar: String!
   lastGithubSyncAt: DateTime
+  dailyNotification: Boolean! @defaultValue(value: true)
+  weeklyNotification: Boolean! @defaultValue(value: true)
   repositories: [Repository!]! @relation(name: "UserRepositories")
   createdAt: DateTime!
   updatedAt: DateTime!

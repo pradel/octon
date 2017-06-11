@@ -1,0 +1,22 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
+import withData from '../lib/with-data';
+import withUser from '../lib/with-user';
+import AppLayout from '../components/app-layout';
+import SettingsNotifications from '../components/settings/notifications';
+import SettingsEmail from '../components/settings/email';
+import SettingsMore from '../components/settings/more-settings';
+
+const Settings = ({ user }) =>
+  (<AppLayout>
+    <SettingsNotifications user={user} />
+    <SettingsEmail user={user} />
+    <SettingsMore user={user} />
+  </AppLayout>);
+
+Settings.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+export default compose(withData, withUser())(Settings);

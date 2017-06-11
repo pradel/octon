@@ -46,6 +46,10 @@ class Header extends Component {
       menuAnchorEl: event && event.currentTarget,
     });
 
+  handleSettings = () => {
+    Router.push('/settings');
+  };
+
   handleLogout = () => {
     auth.unsetToken();
     Router.push('/');
@@ -65,6 +69,7 @@ class Header extends Component {
             <MoreVert />
           </IconButton>
           <Menu anchorEl={menuAnchorEl} open={menuOpen} onRequestClose={this.handleToggleMenu}>
+            <MenuItem onClick={this.handleSettings}>Settings</MenuItem>
             <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
           </Menu>
         </Toolbar>

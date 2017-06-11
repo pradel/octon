@@ -26,7 +26,7 @@
     "marked": "^0.3.6",
     "material-ui": "v1.0.0-alpha.15",
     "material-ui-icons": "^1.0.0-alpha.3",
-    "next": "3.0.0-beta12",
+    "next": "3.0.0-beta13",
     "node-schedule": "^1.2.3",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",

@@ -5,6 +5,7 @@ import Router from 'next/router';
 import styled from 'styled-components';
 import withUser from '../lib/with-user';
 import Theme from '../lib/theme';
+import Alert from '../lib/alert';
 import Header from '../components/header';
 import Loading from '../components/loading';
 import ReleasesList from '../components/releases-list';
@@ -65,6 +66,7 @@ class AppLayout extends Component {
     const { loadingSync } = this.state;
     return (
       <Theme>
+        <Alert />
         <Header user={user} />
         <ColLeft>
           {loadingSync && <Loading text="Your stars are importing please wait a minute..." />}
