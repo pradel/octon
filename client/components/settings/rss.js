@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import copy from 'copy-text-to-clipboard';
+import { copy } from 'clipboard-js';
 import List, {
   ListSubheader,
   ListItem,

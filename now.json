@@ -2,6 +2,9 @@
   "name": "octon",
   "alias": "octon",
   "dotenv": ".env.production",
+  "engines": {
+    "node": "^8.0.0"
+  },
   "files": [
     "client",
     "server",
