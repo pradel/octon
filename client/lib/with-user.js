@@ -36,6 +36,8 @@ export default (props = {}) => (ComposedComponent) => {
         email
         avatar
         lastGithubSyncAt
+        dailyNotification
+        weeklyNotification
       }
     }
   `;

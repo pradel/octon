@@ -1,6 +1,5 @@
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
-import * as dotenv from 'dotenv';
 import * as express from 'express';
 import 'isomorphic-fetch';
 import * as next from 'next';
@@ -11,7 +10,6 @@ import cron from './cron';
 
 // TODO add sentry to catch errors (client + server)
 
-dotenv.config();
 const dev = process.env.NODE_ENV !== 'production';
 const dir = resolve(__dirname, '..', 'client');
 const app = next({ dev, dir });

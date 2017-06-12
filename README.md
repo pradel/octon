@@ -12,8 +12,8 @@ Notifies you when a new release has been made on repositories you starred on Git
 ## Features
 
 Emails you when a new release has been made on Github.
-- TODO: Daily mail
-- TODO: Weekly mail
+- Daily mail
+- Weekly mail
 - Github support
 - TODO: Docker support
 
@@ -44,6 +44,8 @@ type User implements Node {
   username: String!
   avatar: String!
   lastGithubSyncAt: DateTime
+  dailyNotification: Boolean! @defaultValue(value: true)
+  weeklyNotification: Boolean! @defaultValue(value: true)
   repositories: [Repository!]! @relation(name: "UserRepositories")
   createdAt: DateTime!
   updatedAt: DateTime!

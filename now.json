@@ -4,6 +4,7 @@
   "dotenv": true,
   "files": [
     "client",
-    "server"
+    "lib",
+    "ressources"
   ]
 }
