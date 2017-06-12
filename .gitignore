@@ -1,5 +1,6 @@
 node_modules
 client/.next
 .env
+.env.production
 project.graphcool
 lib
