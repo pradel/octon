@@ -3,4 +3,4 @@ client/.next
 .env
 .env.production
 project.graphcool
-lib
+build

@@ -1,10 +1,11 @@
 {
   "name": "octon",
   "alias": "octon",
-  "dotenv": true,
+  "dotenv": ".env.production",
   "files": [
     "client",
-    "lib",
-    "ressources"
+    "server",
+    "ressources",
+    "tsconfig.json"
   ]
 }
