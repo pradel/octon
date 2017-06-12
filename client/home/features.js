@@ -48,7 +48,7 @@ const Features = () =>
         </div>
         <div className="feature-content">
           <h5>Notifications</h5>
-          <p>Daily emails<br />Weekly emails<br />TODO: Rss feed</p>
+          <p>Daily emails<br />Weekly emails<br />Rss feed</p>
         </div>
         <div className="feature-content">
           <h5>Choose what you track</h5>

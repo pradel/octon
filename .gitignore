@@ -4,3 +4,4 @@ client/.next
 .env.production
 project.graphcool
 build
+*.log

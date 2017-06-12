@@ -5,7 +5,7 @@ import 'isomorphic-fetch';
 import * as next from 'next';
 import { resolve } from 'path';
 import * as logger from 'winston';
-import { apiSyncUserRepositories } from './api';
+import { apiSyncUserRepositories, apiRssFeed } from './api';
 import cron from './cron';
 
 // TODO add sentry to catch errors (client + server)
@@ -21,6 +21,8 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
 
   server.post('/api/sync-stars', apiSyncUserRepositories);
+
+  server.get('/users/:userId/rss', apiRssFeed);
 
   server.get(
     '/release/:repositoryType/:repositoryName1/:repositoryName2/:releaseTagName',
