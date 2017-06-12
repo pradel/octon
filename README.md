@@ -12,8 +12,8 @@ Notifies you when a new release has been made on repositories you starred on Git
 ## Features
 
 Emails you when a new release has been made on Github.
-- TODO: Daily mail
-- TODO: Weekly mail
+- Daily mail
+- Weekly mail
 - Github support
 - TODO: Docker support
 

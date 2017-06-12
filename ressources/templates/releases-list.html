@@ -1,0 +1,47 @@
+<mjml>
+  <mj-head>
+     <mj-attributes>
+       <mj-all color="#5B5E6E" />
+     </mj-attributes>
+   </mj-head>
+  <mj-body>
+    <mj-container background-color="#F0EFE9">
+      <mj-section background-color="#ffffff" padding-bottom="20" padding-top="20">
+        <mj-column width="100%" vertical-align="top">
+          <mj-image
+            href="{{BASE_URL}}" src="{{BASE_URL}}/static/img/logo.png"
+            alt="Logo" align="center" border="none" width="182"
+            padding-left="0" padding-right="0" padding-bottom="0" padding-top="0"
+          >
+          </mj-image>
+        </mj-column>
+      </mj-section>
+
+      {{#each releases}}
+      <mj-section background-color="#ffffff">
+        <mj-column width="50">
+          <mj-image padding="0" src="{{repository.avatar}}" href="{{repository.htmlUrl}}" />
+        </mj-column>
+        <mj-column>
+          <mj-text padding="0 0 0 10px" color="#5B5E6E" font-size="18px">
+            <a target="_blank" href="{{repository.htmlUrl}}" style="color: #5B5E6E;">
+              {{repository.name}}
+            </a>
+          </mj-text>
+          <mj-text padding="5px 10px 5px 10px" color="#5B5E6E" font-size="14px">
+            Released
+            <a target="_blank" href="{{htmlUrl}}" style="color: #5B5E6E;">{{tagName}}</a>
+            on {{publishedAt}}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+      {{/each}}
+
+      <mj-section background-color="#ffffff" text-align="right">
+        <mj-link padding="5px 15px 5px 15px" color="#acacad" font-size="10px" text-transform="inherit" href="{{BASE_URL}}/settings">
+          Manage email settings
+        </mj-link>
+      </mj-section>
+    </mj-container>
+  </mj-body>
+</mjml>
