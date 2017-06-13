@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import find from 'lodash/find';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -62,6 +63,19 @@ class ReleaseContent extends Component {
         {!loading &&
           release &&
           <div>
+            <Head>
+              <title>{release.tagName} - {release.repository.name} - Octon</title>
+              <meta
+                property="og:title"
+                content={`${release.tagName} - ${release.repository.name} - Octon`}
+              />
+              <meta
+                property="og:description"
+                content={`Release ${release.tagName} - ${release.repository.name}`}
+              />
+              <meta property="og:type" content="website" />
+              <meta property="og:image" content={release.repository.avatar} />
+            </Head>
             <List>
               <StyledListItem onClick={this.handleOpenNewTabRepository}>
                 <Avatar alt={release.repository.name} src={release.repository.avatar} />
