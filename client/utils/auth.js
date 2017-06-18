@@ -5,7 +5,7 @@ export const auth0IdTokenKey = 'auth0IdToken';
 export default {
   setToken(token) {
     if (process.browser) {
-      Cookie.set(auth0IdTokenKey, token);
+      Cookie.set(auth0IdTokenKey, token, { expires: 14 });
     }
   },
 
