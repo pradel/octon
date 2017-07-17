@@ -35,7 +35,7 @@
     "material-ui": "v1.0.0-alpha.16",
     "material-ui-icons": "^1.0.0-alpha.19",
     "mjml": "^3.3.3",
-    "next": "3.0.0-beta14",
+    "next": "3.0.1-beta.16",
     "node-schedule": "^1.2.3",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
