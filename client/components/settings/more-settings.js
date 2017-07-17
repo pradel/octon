@@ -36,7 +36,7 @@ class SettingsMore extends Component {
     return (
       <Content>
         {showMore
-          ? <Button raised accent onClick={this.handleDeleteAccount}>Delete my account</Button>
+          ? <Button raised color="accent" onClick={this.handleDeleteAccount}>Delete my account</Button>
           : <Button onClick={this.handleShowMore}>More settings</Button>}
       </Content>
     );

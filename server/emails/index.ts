@@ -20,7 +20,7 @@ interface SendEmailParams {
 }
 
 function sendEmail(options: SendEmailParams): Promise<string> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolvePromise, reject) => {
     const { to, subject, html } = options;
     const text = htmlToText.fromString(html);
     const from = 'no-reply@octon.xyz';
@@ -36,7 +36,7 @@ function sendEmail(options: SendEmailParams): Promise<string> {
         if (err) {
           reject(err);
         } else {
-          resolve(message);
+          resolvePromise(message);
         }
       }
     );

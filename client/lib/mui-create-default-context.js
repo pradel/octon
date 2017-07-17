@@ -1,7 +1,7 @@
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import createPalette from 'material-ui/styles/palette';
 import createMuiTheme from 'material-ui/styles/theme';
-import { blue } from 'material-ui/styles/colors';
+import blue from 'material-ui/colors/blue';
 import colors from '../utils/colors';
 
 const createDefaultContext = () =>
