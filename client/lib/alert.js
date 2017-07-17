@@ -46,7 +46,7 @@ class Alert extends Component {
           <DialogContentText>{text}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.confirm} accent>Confirm</Button>
+          <Button onClick={this.confirm} color="accent">Confirm</Button>
           <Button onClick={this.cancel}>Cancel</Button>
         </DialogActions>
       </Dialog>
