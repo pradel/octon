@@ -57,7 +57,9 @@ class SettingsEmail extends Component {
             ? <ListItem>
               <ListItemText primary={user.email} />
               <ListItemSecondaryAction>
-                <IconButton onClick={this.handleEditEmail} title="Edit"><Edit /></IconButton>
+                <IconButton onClick={this.handleEditEmail} title="Edit">
+                  <Edit />
+                </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
             : null}
@@ -70,7 +72,9 @@ class SettingsEmail extends Component {
               value={email}
               onChange={this.handleChangeEmail}
             />
-            <IconButton type="submit" title="Save"><Save /></IconButton>
+            <IconButton type="submit" title="Save">
+              <Save />
+            </IconButton>
           </Form>
           : null}
       </div>

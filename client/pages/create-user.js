@@ -111,8 +111,13 @@ const userQueryOptions = {
 };
 
 const createUserMutation = gql`
-  mutation ($idToken: String!, $username: String!, $email: String!, $avatar: String!) {
-    createUser(authProvider: { auth0: { idToken: $idToken } }, username: $username, email: $email, avatar: $avatar) {
+  mutation($idToken: String!, $username: String!, $email: String!, $avatar: String!) {
+    createUser(
+      authProvider: { auth0: { idToken: $idToken } }
+      username: $username
+      email: $email
+      avatar: $avatar
+    ) {
       id
     }
   }

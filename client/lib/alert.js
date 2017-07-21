@@ -41,12 +41,18 @@ class Alert extends Component {
     const { isOpen, title, text } = this.state;
     return (
       <Dialog open={isOpen} onRequestClose={this.handleRequestClose}>
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle>
+          {title}
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText>{text}</DialogContentText>
+          <DialogContentText>
+            {text}
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.confirm} color="accent">Confirm</Button>
+          <Button onClick={this.confirm} color="accent">
+            Confirm
+          </Button>
           <Button onClick={this.cancel}>Cancel</Button>
         </DialogActions>
       </Dialog>

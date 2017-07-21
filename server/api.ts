@@ -76,9 +76,8 @@ async function apiRssFeed(req, res): Promise<void> {
       image: `${process.env.BASE_URL}/img/logo.png`,
       id: `${process.env.BASE_URL}/users/${user.id}/rss`,
       link: `${process.env.BASE_URL}/users/${user.id}/rss`,
-      updated: releases.length > 0
-        ? new Date(releases[0].publishedAt)
-        : new Date(),
+      updated:
+        releases.length > 0 ? new Date(releases[0].publishedAt) : new Date(),
     });
     releases.forEach(release => {
       const date = format(release.publishedAt, 'ddd DD MMM - h.mma');

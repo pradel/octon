@@ -57,7 +57,11 @@ SettingsNotifications.propTypes = {
 
 const updateUserMutation = gql`
   mutation updateUser($id: ID!, $dailyNotification: Boolean!, $weeklyNotification: Boolean!) {
-    updateUser(id: $id, dailyNotification: $dailyNotification, weeklyNotification: $weeklyNotification) {
+    updateUser(
+      id: $id
+      dailyNotification: $dailyNotification
+      weeklyNotification: $weeklyNotification
+    ) {
       id
       dailyNotification
       weeklyNotification

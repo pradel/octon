@@ -12,9 +12,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import TimeAgo from 'timeago-react';
 import Loading from './loading';
 
-const Content = styled.div`
-  padding: 0 16px;
-`;
+const Content = styled.div`padding: 0 16px;`;
 
 const StyledListItem = styled(ListItem)`
   cursor: pointer;
@@ -64,7 +62,9 @@ class ReleaseContent extends Component {
           release &&
           <div>
             <Head>
-              <title>{release.tagName} - {release.repository.name} - Octon</title>
+              <title>
+                {release.tagName} - {release.repository.name} - Octon
+              </title>
               <meta
                 property="og:title"
                 content={`${release.tagName} - ${release.repository.name} - Octon`}
@@ -83,9 +83,7 @@ class ReleaseContent extends Component {
                   primary={release.repository.name}
                   secondary={
                     <Typography secondary>
-                      Released this
-                      {' '}
-                      <TimeAgo datetime={new Date(release.publishedAt)} />
+                      Released this <TimeAgo datetime={new Date(release.publishedAt)} />
                     </Typography>
                   }
                 />
@@ -96,9 +94,7 @@ class ReleaseContent extends Component {
                 {release.tagName}
               </StyledTitle>
               {!changelog &&
-                <Typography type="caption">
-                  There is no changelog for this release
-                </Typography>}
+                <Typography type="caption">There is no changelog for this release</Typography>}
               {changelog &&
                 <Typography
                   className="markdown-body"
@@ -123,13 +119,12 @@ ReleaseContent.defaultProps = {
 
 const releaseQuery = gql`
   query allReleases($repositoryType: String!, $repositoryName: String!, $releaseTagName: String!) {
-    allReleases(filter: {
-      tagName: $releaseTagName
-      repository: {
-        name: $repositoryName
-        type: $repositoryType
+    allReleases(
+      filter: {
+        tagName: $releaseTagName
+        repository: { name: $repositoryName, type: $repositoryType }
       }
-    }) {
+    ) {
       id
       refId
       tagName

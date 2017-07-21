@@ -13,13 +13,11 @@ const SignUp = ({ handleLogin }) =>
     <div className="content">
       <h3>Octon is absolutely free, wanna get started ?</h3>
       <p>
-        Octon is an
-        {' '}
-        <a href="https://github.com/pradel/octon">open source</a>
-        {' '}
-        project
+        Octon is an <a href="https://github.com/pradel/octon">open source</a> project
       </p>
-      <button className="btn" onClick={handleLogin}>Log in with github</button>
+      <button className="btn" onClick={handleLogin}>
+        Log in with github
+      </button>
     </div>
   </StyledSignUp>);
 

@@ -29,18 +29,18 @@ export default (props = {}) => (ComposedComponent) => {
   const userQuery = props.query
     ? gql(props.query)
     : gql`
-    query {
-      user {
-        id
-        username
-        email
-        avatar
-        lastGithubSyncAt
-        dailyNotification
-        weeklyNotification
-      }
-    }
-  `;
+        query {
+          user {
+            id
+            username
+            email
+            avatar
+            lastGithubSyncAt
+            dailyNotification
+            weeklyNotification
+          }
+        }
+      `;
 
   const userQueryOptions = {
     props: ({ data: { loading, user, error } }) => ({

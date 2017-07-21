@@ -15,13 +15,9 @@ const StyledAppBar = styled(AppBar)`
   box-shadow: none !important;
 `;
 
-const StyledLogoContainer = styled.div`
-  flex: 1;
-`;
+const StyledLogoContainer = styled.div`flex: 1;`;
 
-const StyledLogo = styled.img`
-  height: 25px;
-`;
+const StyledLogo = styled.img`height: 25px;`;
 
 const StyledAvatar = styled.div`
   height: 40px;

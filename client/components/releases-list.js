@@ -27,7 +27,9 @@ const ReleasesList = ({ releases, loading, loadMoreReleases }) =>
     {releases.map(release => <ReleasesListItem key={release.id} release={release} />)}
     {releases.length > 0 &&
       <StyledLoadMore>
-        <Button raised onClick={loadMoreReleases}>Load more</Button>
+        <Button raised onClick={loadMoreReleases}>
+          Load more
+        </Button>
       </StyledLoadMore>}
   </List>);
 
@@ -48,13 +50,7 @@ const releasesQuery = gql`
       orderBy: publishedAt_DESC
       first: 40
       after: $after
-      filter: {
-        repository: {
-          users_some: {
-            id: $id
-          }
-        }
-      }
+      filter: { repository: { users_some: { id: $id } } }
     ) {
       id
       tagName

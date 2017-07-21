@@ -18,9 +18,7 @@ const StyledListItem = styled(ListItem)`
   }
 `;
 
-const StyledLink = styled.a`
-  font-weight: bold;
-`;
+const StyledLink = styled.a`font-weight: bold;`;
 
 class ReleasesListItem extends Component {
   handleClick = () => {
@@ -42,8 +40,7 @@ class ReleasesListItem extends Component {
           primary={release.repository.name}
           secondary={
             <Typography secondary>
-              Released
-              {' '}
+              Released{' '}
               <StyledLink
                 className="version"
                 href={release.htmlUrl}

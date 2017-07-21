@@ -42,10 +42,10 @@ const Hero = ({ handleLogin }) =>
   (<StyledHero>
     <div className="content">
       <h1 className="title">Octon will keep you posted !</h1>
-      <p className="intro">
-        Any new releases on your starred projects ? Octon will let you know.
-      </p>
-      <button className="btn" onClick={handleLogin}>Log in with github</button>
+      <p className="intro">Any new releases on your starred projects ? Octon will let you know.</p>
+      <button className="btn" onClick={handleLogin}>
+        Log in with github
+      </button>
     </div>
   </StyledHero>);
 

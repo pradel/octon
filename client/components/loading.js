@@ -11,7 +11,10 @@ const LoadingContainer = styled.div`
 const Loading = ({ text }) =>
   (<LoadingContainer>
     <CircularProgress />
-    {text && <p>{text}</p>}
+    {text &&
+      <p>
+        {text}
+      </p>}
   </LoadingContainer>);
 
 Loading.propTypes = {

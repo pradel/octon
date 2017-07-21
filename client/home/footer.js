@@ -4,11 +4,11 @@ import styled from 'styled-components';
 const StyledFooter = styled.div`
   & .separator {
     height: 60px;
-    background-color: #495061
+    background-color: #495061;
   }
 
   & .footer {
-    background-color: #3D4351;
+    background-color: #3d4351;
     padding: 120px 0 120px 0;
     text-align: center;
   }
@@ -18,7 +18,7 @@ const StyledFooter = styled.div`
   }
 
   & .info {
-    color: #ACB1B4;
+    color: #acb1b4;
     font-size: 13px;
   }
 `;
@@ -37,14 +37,7 @@ const Footer = () =>
       </div>
       <p className="info">
         Copyright © 2017 Octon<br />
-        <a href="https://github.com/pradel/octon/blob/master/LICENSE">
-          Licence
-        </a>
-        {' '}
-        | Theme crafted
-        {' '}
-        by
-        {' '}
+        <a href="https://github.com/pradel/octon/blob/master/LICENSE">Licence</a> | Theme crafted by{' '}
         <a href="http://www.peterfinlan.com/">Peter Finlan</a>
         .
       </p>
