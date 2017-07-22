@@ -30,7 +30,7 @@ Emails you when a new release has been made on Github.
 
 Pull requests are always welcome!
 
-In order to run the project you will need to setup [Graphcool](https://www.graph.cool/) and [Auth0](http://auth0.com/).
+In order to run the project you will need to setup [Graphcool](https://www.graph.cool/).
 
 #### Graphcool setup
 
@@ -92,10 +92,6 @@ extend type Mutation {
   authenticateGithubUser(githubToken: String!): AuthenticateGithubUserPayload
 }
 ```
-
-#### Auth0 setup
-
-[Connect your app to github](https://auth0.com/docs/connections/social/github).
 
 #### App setup
 

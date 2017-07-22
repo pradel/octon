@@ -49,6 +49,7 @@ class Index extends Component {
   async componentDidMount() {
     const githubCode = window.location.search.substring(1).split('&')[0].split('code=')[1];
     if (githubCode) {
+      // TODO show loading during login
       // Remove hash in url
       window.history.replaceState({}, document.title, '.');
       // Try to login user
