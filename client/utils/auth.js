@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 
-export const auth0IdTokenKey = 'auth0IdToken';
+export const auth0IdTokenKey = 'graphcoolToken';
 
 export default {
   setToken(token) {

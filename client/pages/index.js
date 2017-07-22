@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
 import { injectGlobal } from 'styled-components';
-import Lock from '../utils/lock';
+import { request } from 'graphql-request';
 import auth from '../utils/auth';
 import withData from '../lib/with-data';
 import Header from '../home/header';
@@ -46,16 +46,37 @@ injectGlobal`
 `;
 
 class Index extends Component {
-  componentDidMount() {
-    this.lock = new Lock();
-    this.lock.getLock().on('authenticated', (authResult) => {
-      auth.setToken(authResult.idToken);
-      Router.push('/create-user');
-    });
+  async componentDidMount() {
+    const githubCode = window.location.search.substring(1).split('&')[0].split('code=')[1];
+    if (githubCode) {
+      // Remove hash in url
+      window.history.replaceState({}, document.title, '.');
+      // Try to login user
+      try {
+        const data = await request(process.env.GRAPHCOOL_URL, `
+          mutation {
+            authenticateGithubUser(githubCode: "${githubCode}") {
+              token
+            }
+          }
+        `);
+        auth.setToken(data.authenticateGithubUser.token);
+        Router.push('/app');
+      } catch (err) {
+        if (err.response.errors[0].functionError) {
+          alert(err.response.errors[0].functionError);
+        } else {
+          alert(err.response.errors[0].message);
+        }
+      }
+    }
   }
 
   handleLogin = () => {
-    this.lock.login();
+    window.location.replace(
+      `https://github.com/login/oauth/authorize?client_id=${process.env
+        .GITHUB_CLIENT_ID}&scope=user:email`,
+    );
   };
 
   render() {

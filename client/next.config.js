@@ -12,8 +12,7 @@ module.exports = {
     const plugin = new webpack.DefinePlugin({
       'process.env.BASE_URL': JSON.stringify(process.env.BASE_URL),
       'process.env.GRAPHCOOL_URL': JSON.stringify(process.env.GRAPHCOOL_URL),
-      'process.env.AUTH0_CLIENT_ID': JSON.stringify(process.env.AUTH0_CLIENT_ID),
-      'process.env.AUTH0_CLIENT_DOMAIN': JSON.stringify(process.env.AUTH0_CLIENT_DOMAIN),
+      'process.env.GITHUB_CLIENT_ID': JSON.stringify(process.env.GITHUB_CLIENT_ID),
     });
     config.plugins.push(plugin);
     return config;
