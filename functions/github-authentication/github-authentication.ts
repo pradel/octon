@@ -85,7 +85,7 @@ async function createGraphcoolUser(api: any, githubUser: any) {
 module.exports = async function(event) {
   const code: string = event.data.githubCode;
   const graphcool = fromEvent(event);
-  const api = graphcool.api('simple/v1/__GRAPHCOOL_PROJECT_ID__');
+  const api = graphcool.api('simple/v1');
 
   try {
     // Exchange code for a github accessToken
