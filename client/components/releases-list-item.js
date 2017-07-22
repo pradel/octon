@@ -39,7 +39,7 @@ class ReleasesListItem extends Component {
         <ListItemText
           primary={release.repository.name}
           secondary={
-            <Typography secondary>
+            <Typography color="secondary" component="span">
               Released{' '}
               <StyledLink
                 className="version"

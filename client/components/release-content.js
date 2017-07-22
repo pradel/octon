@@ -82,7 +82,7 @@ class ReleaseContent extends Component {
                 <ListItemText
                   primary={release.repository.name}
                   secondary={
-                    <Typography secondary>
+                    <Typography color="secondary" component="span">
                       Released this <TimeAgo datetime={new Date(release.publishedAt)} />
                     </Typography>
                   }
