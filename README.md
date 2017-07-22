@@ -39,7 +39,7 @@ You need to apply the following schema to your graphcool project.
 ```graphql
 type User implements Node {
   id: ID! @isUnique
-  auth0UserId: String @isUnique
+  githubUserId: String! @isUnique
   email: String! @isUnique
   username: String!
   avatar: String!
@@ -74,6 +74,22 @@ type Release implements Node {
   repository: Repository! @relation(name: "RepositoryReleases")
   createdAt: DateTime!
   updatedAt: DateTime!
+}
+```
+
+#### Functions
+
+##### github-authentication
+
+`functions/github-authentication/github-authentication.js`
+
+```
+type AuthenticateGithubUserPayload {
+  token: String!
+}
+
+extend type Mutation {
+  authenticateGithubUser(githubToken: String!): AuthenticateGithubUserPayload
 }
 ```
 

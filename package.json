@@ -3,13 +3,14 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"tsc --watch\" \"nodemon -r dotenv/config build/index.js --watch build\"",
-    "build": "npm run build-server && npm run build-client",
+    "build": "npm run build-server && npm run build-client && npm run build-functions",
     "build-client": "next build ./client",
     "build-server": "tsc",
+    "build-functions": "tsc --project ./functions/tsconfig.json && node ./functions/replace-env",
     "start": "NODE_ENV=production node build/index.js",
     "format-client": "prettier-eslint --write \"client/**/*.js\"",
     "format-server": "prettier --single-quote --trailing-comma es5 --write \"server/**/*.ts\"",
-    "format-functions": "prettier-eslint --write \"functions/**/*.js\"",
+    "format-functions": "prettier --single-quote --trailing-comma es5 --write \"functions/**/*.ts\"",
     "format": "npm run format-client && npm run format-server && npm run format-functions",
     "lint": "eslint client && eslint functions && tslint server/**/*.ts client/**/*.tsx",
     "test": "npm run lint && npm run build"
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.0.36",
+    "@types/node": "^8.0.14",
     "@types/node-schedule": "^1.2.0",
     "@types/react": "^15.0.38",
     "@types/xml2js": "^0.4.0",
