@@ -47,7 +47,7 @@ class SettingsMore extends Component {
 
 SettingsMore.propTypes = {
   user: PropTypes.object.isRequired,
-  // deleteUser: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired,
 };
 
 const updateUserMutation = gql`

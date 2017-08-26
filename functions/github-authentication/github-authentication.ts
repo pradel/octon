@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 const fromEvent = require('graphcool-lib').fromEvent;
 
 const clientId = '__GITHUB_CLIENT_ID__';
@@ -53,9 +54,9 @@ async function getGithubAccountEmail(githubToken): Promise<string> {
   );
   const emails = await data.json();
   let email;
-  emails.forEach((data) => {
-    if (data.primary) {
-      email = data.email;
+  emails.forEach((emailData) => {
+    if (emailData.primary) {
+      email = emailData.email;
     }
   });
   return email;
@@ -82,7 +83,7 @@ async function createGraphcoolUser(api: any, githubUser: any) {
   return data.createUser;
 }
 
-module.exports = async function(event) {
+module.exports = async (event) => {
   const code: string = event.data.githubCode;
   const graphcool = fromEvent(event);
   const api = graphcool.api('simple/v1');
