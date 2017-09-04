@@ -19,9 +19,7 @@ const Form = styled.form`
   padding: 0 16px;
 `;
 
-const StyledTextField = styled(TextField)`
-  width: 100%;
-`;
+const StyledTextField = styled(TextField)`width: 100%;`;
 
 class SettingsEmail extends Component {
   constructor(props) {
@@ -53,8 +51,8 @@ class SettingsEmail extends Component {
     return (
       <div>
         <List subheader={<ListSubheader>Email</ListSubheader>}>
-          {!editEmail
-            ? <ListItem>
+          {!editEmail ? (
+            <ListItem>
               <ListItemText primary={user.email} />
               <ListItemSecondaryAction>
                 <IconButton onClick={this.handleEditEmail} title="Edit">
@@ -62,10 +60,10 @@ class SettingsEmail extends Component {
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
-            : null}
+          ) : null}
         </List>
-        {editEmail
-          ? <Form onSubmit={this.handleChangeUserEmail}>
+        {editEmail ? (
+          <Form onSubmit={this.handleChangeUserEmail}>
             <StyledTextField
               id="Email"
               placeholder="Email"
@@ -76,7 +74,7 @@ class SettingsEmail extends Component {
               <Save />
             </IconButton>
           </Form>
-          : null}
+        ) : null}
       </div>
     );
   }

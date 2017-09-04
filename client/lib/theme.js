@@ -17,9 +17,7 @@ class Theme extends Component {
     const { children } = this.props;
     return (
       <MuiThemeProvider styleManager={styleManager} theme={theme}>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </MuiThemeProvider>
     );
   }

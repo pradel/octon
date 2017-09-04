@@ -35,11 +35,13 @@ class SettingsMore extends Component {
     const { showMore } = this.state;
     return (
       <Content>
-        {showMore
-          ? <Button raised color="accent" onClick={this.handleDeleteAccount}>
-              Delete my account
-            </Button>
-          : <Button onClick={this.handleShowMore}>More settings</Button>}
+        {showMore ? (
+          <Button raised color="accent" onClick={this.handleDeleteAccount}>
+            Delete my account
+          </Button>
+        ) : (
+          <Button onClick={this.handleShowMore}>More settings</Button>
+        )}
       </Content>
     );
   }

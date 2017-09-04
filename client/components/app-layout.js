@@ -72,9 +72,7 @@ class AppLayout extends Component {
           {loadingSync && <Loading text="Your stars are importing please wait a minute..." />}
           {!loadingSync && <ReleasesList user={user} />}
         </ColLeft>
-        <ColRight>
-          {children}
-        </ColRight>
+        <ColRight>{children}</ColRight>
       </Theme>
     );
   }

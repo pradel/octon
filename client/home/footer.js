@@ -23,8 +23,8 @@ const StyledFooter = styled.div`
   }
 `;
 
-const Footer = () =>
-  (<StyledFooter>
+const Footer = () => (
+  <StyledFooter>
     <div className="separator" />
     <div className="footer">
       <div className="social">
@@ -42,6 +42,7 @@ const Footer = () =>
         .
       </p>
     </div>
-  </StyledFooter>);
+  </StyledFooter>
+);
 
 export default Footer;

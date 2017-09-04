@@ -8,8 +8,8 @@ const StyledSignUp = styled.div`
   text-align: center;
 `;
 
-const SignUp = ({ handleLogin }) =>
-  (<StyledSignUp>
+const SignUp = ({ handleLogin }) => (
+  <StyledSignUp>
     <div className="content">
       <h3>Octon is absolutely free, wanna get started ?</h3>
       <p>
@@ -19,7 +19,8 @@ const SignUp = ({ handleLogin }) =>
         Log in with github
       </button>
     </div>
-  </StyledSignUp>);
+  </StyledSignUp>
+);
 
 SignUp.propTypes = {
   handleLogin: PropTypes.func.isRequired,

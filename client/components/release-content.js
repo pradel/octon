@@ -14,9 +14,7 @@ import Loading from './loading';
 
 const Content = styled.div`padding: 0 16px;`;
 
-const StyledListItem = styled(ListItem)`
-  cursor: pointer;
-`;
+const StyledListItem = styled(ListItem)`cursor: pointer;`;
 
 const StyledTitle = styled(Typography)`
   margin-top: 10px !important;
@@ -59,7 +57,7 @@ class ReleaseContent extends Component {
       <div>
         {loading && <Loading />}
         {!loading &&
-          release &&
+        release && (
           <div>
             <Head>
               <title>
@@ -93,15 +91,18 @@ class ReleaseContent extends Component {
               <StyledTitle type="title" component="a" href={release.htmlUrl} target="_blank">
                 {release.tagName}
               </StyledTitle>
-              {!changelog &&
-                <Typography type="caption">There is no changelog for this release</Typography>}
-              {changelog &&
+              {!changelog && (
+                <Typography type="caption">There is no changelog for this release</Typography>
+              )}
+              {changelog && (
                 <Typography
                   className="markdown-body"
                   dangerouslySetInnerHTML={{ __html: changelog }}
-                />}
+                />
+              )}
             </Content>
-          </div>}
+          </div>
+        )}
       </div>
     );
   }

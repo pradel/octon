@@ -47,20 +47,26 @@ injectGlobal`
 
 class Index extends Component {
   async componentDidMount() {
-    const githubCode = window.location.search.substring(1).split('&')[0].split('code=')[1];
+    const githubCode = window.location.search
+      .substring(1)
+      .split('&')[0]
+      .split('code=')[1];
     if (githubCode) {
       // TODO show loading during login
       // Remove hash in url
       window.history.replaceState({}, document.title, '.');
       // Try to login user
       try {
-        const data = await request(process.env.GRAPHCOOL_URL, `
+        const data = await request(
+          process.env.GRAPHCOOL_URL,
+          `
           mutation {
             authenticateGithubUser(githubCode: "${githubCode}") {
               token
             }
           }
-        `);
+        `,
+        );
         auth.setToken(data.authenticateGithubUser.token);
         Router.push('/app');
       } catch (err) {

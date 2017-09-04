@@ -54,7 +54,7 @@ async function getGithubAccountEmail(githubToken): Promise<string> {
   );
   const emails = await data.json();
   let email;
-  emails.forEach((emailData) => {
+  emails.forEach(emailData => {
     if (emailData.primary) {
       email = emailData.email;
     }
@@ -83,7 +83,7 @@ async function createGraphcoolUser(api: any, githubUser: any) {
   return data.createUser;
 }
 
-module.exports = async (event) => {
+module.exports = async event => {
   const code: string = event.data.githubCode;
   const graphcool = fromEvent(event);
   const api = graphcool.api('simple/v1');
@@ -114,4 +114,4 @@ module.exports = async (event) => {
   } catch (error) {
     return { error: error.toString ? error.toString() : error };
   }
-}
+};

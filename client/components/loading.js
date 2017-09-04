@@ -8,14 +8,12 @@ const LoadingContainer = styled.div`
   margin-top: 40px;
 `;
 
-const Loading = ({ text }) =>
-  (<LoadingContainer>
+const Loading = ({ text }) => (
+  <LoadingContainer>
     <CircularProgress />
-    {text &&
-      <p>
-        {text}
-      </p>}
-  </LoadingContainer>);
+    {text && <p>{text}</p>}
+  </LoadingContainer>
+);
 
 Loading.propTypes = {
   text: PropTypes.string,

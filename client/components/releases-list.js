@@ -20,18 +20,20 @@ const StyledLoadMore = styled.div`
   margin-bottom: 10px;
 `;
 
-const ReleasesList = ({ releases, loading, loadMoreReleases }) =>
-  (<List>
+const ReleasesList = ({ releases, loading, loadMoreReleases }) => (
+  <List>
     {loading && <Loading />}
     {!loading && releases.length === 0 && <StyledNoReleases>No recent releases</StyledNoReleases>}
     {releases.map(release => <ReleasesListItem key={release.id} release={release} />)}
-    {releases.length > 0 &&
+    {releases.length > 0 && (
       <StyledLoadMore>
         <Button raised onClick={loadMoreReleases}>
           Load more
         </Button>
-      </StyledLoadMore>}
-  </List>);
+      </StyledLoadMore>
+    )}
+  </List>
+);
 
 ReleasesList.propTypes = {
   loading: PropTypes.bool,

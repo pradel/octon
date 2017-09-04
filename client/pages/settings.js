@@ -9,13 +9,14 @@ import SettingsEmail from '../components/settings/email';
 import Rss from '../components/settings/rss';
 import SettingsMore from '../components/settings/more-settings';
 
-const Settings = ({ user }) =>
-  (<AppLayout>
+const Settings = ({ user }) => (
+  <AppLayout>
     <SettingsNotifications user={user} />
     <SettingsEmail user={user} />
     <Rss user={user} />
     <SettingsMore user={user} />
-  </AppLayout>);
+  </AppLayout>
+);
 
 Settings.propTypes = {
   user: PropTypes.object.isRequired,

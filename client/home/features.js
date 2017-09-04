@@ -27,8 +27,8 @@ const StyledFeatures = styled.div`
   }
 `;
 
-const Features = () =>
-  (<StyledFeatures>
+const Features = () => (
+  <StyledFeatures>
     <div className="content">
       <h3>Your personal assistant</h3>
       <p className="text">
@@ -58,6 +58,7 @@ const Features = () =>
         </div>
       </div>
     </div>
-  </StyledFeatures>);
+  </StyledFeatures>
+);
 
 export default Features;

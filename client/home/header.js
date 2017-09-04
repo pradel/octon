@@ -37,8 +37,8 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = ({ handleLogin }) =>
-  (<StyledHeader>
+const Header = ({ handleLogin }) => (
+  <StyledHeader>
     <header>
       <div className="logo">
         <img alt="Octon logo" src="/static/img/logo.svg" height="36" />
@@ -47,7 +47,8 @@ const Header = ({ handleLogin }) =>
         <button onClick={handleLogin}>SIGN UP</button>
       </div>
     </header>
-  </StyledHeader>);
+  </StyledHeader>
+);
 
 Header.propTypes = {
   handleLogin: PropTypes.func.isRequired,
