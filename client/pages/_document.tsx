@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, injectGlobal } from 'styled-components';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../lib/mui-create-default-context';
 
 // Global styles
-// eslint-disable-next-line
+// tslint:disable-next-line
 injectGlobal`
   body {
     font-family: Roboto;

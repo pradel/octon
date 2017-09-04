@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 const StyledHero = styled.div`
   min-height: 750px;

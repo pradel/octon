@@ -1,4 +1,4 @@
-import Cookie from 'js-cookie';
+import * as Cookie from 'js-cookie';
 
 export const auth0IdTokenKey = 'graphcoolToken';
 

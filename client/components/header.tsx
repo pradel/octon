@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Router from 'next/router';
 import styled from 'styled-components';
 import AppBar from 'material-ui/AppBar';
@@ -30,7 +30,7 @@ const StyledAvatar = styled.div`
   border: 1px solid #1fe8af;
 `;
 
-class Header extends Component {
+class Header extends React.Component {
   state = {
     menuOpen: false,
     menuAnchorEl: null,

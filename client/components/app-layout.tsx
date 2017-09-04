@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import Router from 'next/router';
 import styled from 'styled-components';
@@ -33,7 +33,7 @@ const ColRight = styled.div`
   padding-bottom: 40px;
 `;
 
-class AppLayout extends Component {
+class AppLayout extends React.Component {
   state = { loadingSync: false };
 
   componentDidMount() {
@@ -62,7 +62,9 @@ class AppLayout extends Component {
 
   render() {
     const { user, children } = this.props;
-    if (!user) return null;
+    if (!user) {
+      return null;
+    }
     const { loadingSync } = this.state;
     return (
       <Theme>

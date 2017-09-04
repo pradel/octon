@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { copy } from 'clipboard-js';
 import List, {
   ListSubheader,
@@ -10,7 +10,7 @@ import List, {
 import IconButton from 'material-ui/IconButton';
 import ContentCopy from 'material-ui-icons/ContentCopy';
 
-class Rss extends Component {
+class Rss extends React.Component {
   handleCopyRss = () => {
     copy(`${process.env.BASE_URL}/users/${this.props.user.id}/rss`);
     // TODO show Snackbar text copied

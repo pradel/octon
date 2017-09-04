@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import withData from '../lib/with-data';
 import withUser from '../lib/with-user';

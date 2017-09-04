@@ -1,5 +1,5 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
-import fetch from 'isomorphic-fetch';
+import * as fetch from 'isomorphic-fetch';
 import auth from '../utils/auth';
 
 let apolloClient = null;
@@ -35,7 +35,7 @@ function create(initialState, ctx) {
     initialState,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     networkInterface,
-    dataIdFromObject: o => `${o.__typename}-${o.id}`, // eslint-disable-line no-underscore-dangle
+    dataIdFromObject: (o: any) => `${o.__typename}-${o.id}`,
   });
 }
 

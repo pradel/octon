@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Head from 'next/head';
-import find from 'lodash/find';
+import * as find from 'lodash/find';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import marked from 'marked';
@@ -21,7 +21,7 @@ const StyledTitle = styled(Typography)`
   margin-bottom: 20px !important;
 `;
 
-class ReleaseContent extends Component {
+class ReleaseContent extends React.Component {
   state = { changelog: null };
 
   componentWillReceiveProps(nextProps) {

@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "./build",
+    "outDir": "./build/client",
     "module": "commonjs",
     "target": "es2015",
     "jsx": "react",
-    "allowJs": true
+    "sourceMap": true
   },
   "include": [
-    "./server/**/*"
+    "./client/**/*"
   ]
 }

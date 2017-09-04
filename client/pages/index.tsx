@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Router from 'next/router';
 import { injectGlobal } from 'styled-components';
 import { request } from 'graphql-request';
@@ -10,7 +10,7 @@ import Features from '../home/features';
 import SignUp from '../home/sign-up';
 import Footer from '../home/footer';
 
-// eslint-disable-next-line
+// tslint:disable-next-line
 injectGlobal`
   h3 {
     margin: 0 0 20px 0;
@@ -45,7 +45,7 @@ injectGlobal`
   }
 `;
 
-class Index extends Component {
+class Index extends React.Component {
   async componentDidMount() {
     const githubCode = window.location.search
       .substring(1)
@@ -70,6 +70,7 @@ class Index extends Component {
         auth.setToken(data.authenticateGithubUser.token);
         Router.push('/app');
       } catch (err) {
+        console.log(err);
         if (err.response.errors[0].functionError) {
           alert(err.response.errors[0].functionError);
         } else {

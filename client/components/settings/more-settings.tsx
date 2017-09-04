@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Router from 'next/router';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -12,7 +12,11 @@ const Content = styled.div`
   margin-top: 20px;
 `;
 
-class SettingsMore extends Component {
+interface State {
+  showMore: boolean;
+}
+
+class SettingsMore extends React.Component<{}, State> {
   state = { showMore: false };
 
   handleShowMore = () => this.setState({ showMore: true });

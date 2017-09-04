@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
@@ -21,7 +21,12 @@ const Form = styled.form`
 
 const StyledTextField = styled(TextField)`width: 100%;`;
 
-class SettingsEmail extends Component {
+interface State {
+  editEmail: boolean;
+  email: string;
+}
+
+class SettingsEmail extends React.Component<{}, State> {
   constructor(props) {
     super(props);
     const { user } = this.props;

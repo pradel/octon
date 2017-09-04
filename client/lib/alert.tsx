@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
@@ -7,7 +7,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-class Alert extends Component {
+class Alert extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

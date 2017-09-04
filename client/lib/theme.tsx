@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { getDefaultContext } from '../lib/mui-create-default-context';
 
-class Theme extends Component {
+class Theme extends React.Component {
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');

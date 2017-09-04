@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import List, {
@@ -10,7 +10,7 @@ import List, {
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
 
-class SettingsNotifications extends Component {
+class SettingsNotifications extends React.Component {
   handleChangeNotification = (e, a) => {
     const params = {
       dailyNotification: this.props.user.dailyNotification,

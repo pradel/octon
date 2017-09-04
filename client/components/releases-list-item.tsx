@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Router from 'next/router';
 import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
 // import classnames from 'classnames';
@@ -20,7 +20,7 @@ const StyledListItem = styled(ListItem)`
 
 const StyledLink = styled.a`font-weight: bold;`;
 
-class ReleasesListItem extends Component {
+class ReleasesListItem extends React.Component {
   handleClick = () => {
     const { release } = this.props;
     Router.push(
