@@ -56,7 +56,11 @@ SettingsNotifications.propTypes = {
 };
 
 const updateUserMutation = gql`
-  mutation updateUser($id: ID!, $dailyNotification: Boolean!, $weeklyNotification: Boolean!) {
+  mutation updateUser(
+    $id: ID!
+    $dailyNotification: Boolean!
+    $weeklyNotification: Boolean!
+  ) {
     updateUser(
       id: $id
       dailyNotification: $dailyNotification
@@ -87,4 +91,6 @@ const updateUserMutationOptions = {
   }),
 };
 
-export default graphql(updateUserMutation, updateUserMutationOptions)(SettingsNotifications);
+export default graphql(updateUserMutation, updateUserMutationOptions)(
+  SettingsNotifications
+);

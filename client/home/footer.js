@@ -37,7 +37,10 @@ const Footer = () => (
       </div>
       <p className="info">
         Copyright © 2017 Octon<br />
-        <a href="https://github.com/pradel/octon/blob/master/LICENSE">Licence</a> | Theme crafted by{' '}
+        <a href="https://github.com/pradel/octon/blob/master/LICENSE">
+          Licence
+        </a>{' '}
+        | Theme crafted by{' '}
         <a href="http://www.peterfinlan.com/">Peter Finlan</a>
         .
       </p>

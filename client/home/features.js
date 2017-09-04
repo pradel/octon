@@ -32,8 +32,8 @@ const Features = () => (
     <div className="content">
       <h3>Your personal assistant</h3>
       <p className="text">
-        Octon is a personal assistant {"that'll"} notify you when new releases have been pushed on{' '}
-        <b>github</b> or <b>docker</b>
+        Octon is a personal assistant {"that'll"} notify you when new releases
+        have been pushed on <b>github</b> or <b>docker</b>
         . You will be able to view the changelog of a release.
       </p>
       <div className="features-list">
@@ -52,8 +52,8 @@ const Features = () => (
         <div className="feature-content">
           <h5>Choose what you track</h5>
           <p>
-            Simply star a project with your github or docker account and octon will automatically
-            notify you of new releases.
+            Simply star a project with your github or docker account and octon
+            will automatically notify you of new releases.
           </p>
         </div>
       </div>

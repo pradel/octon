@@ -26,7 +26,10 @@ class ReleaseContent extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.release) {
-      if (!this.props.release || this.props.release.refId !== nextProps.release.refId) {
+      if (
+        !this.props.release ||
+        this.props.release.refId !== nextProps.release.refId
+      ) {
         this.loadReleaseInfo(nextProps.release);
       }
     }
@@ -36,9 +39,10 @@ class ReleaseContent extends Component {
     window.open(this.props.release.repository.htmlUrl, '_blank');
   };
 
-  loadReleaseInfo = async (release) => {
+  loadReleaseInfo = async release => {
     this.setState({ changelog: null });
-    const url = `https://api.github.com/repos/${release.repository.name}/releases`;
+    const url = `https://api.github.com/repos/${release.repository
+      .name}/releases`;
     let data = await fetch(url);
     data = await data.json();
     if (data && data.length > 0) {
@@ -65,34 +69,47 @@ class ReleaseContent extends Component {
               </title>
               <meta
                 property="og:title"
-                content={`${release.tagName} - ${release.repository.name} - Octon`}
+                content={`${release.tagName} - ${release.repository
+                  .name} - Octon`}
               />
               <meta
                 property="og:description"
-                content={`Release ${release.tagName} - ${release.repository.name}`}
+                content={`Release ${release.tagName} - ${release.repository
+                  .name}`}
               />
               <meta property="og:type" content="website" />
               <meta property="og:image" content={release.repository.avatar} />
             </Head>
             <List>
               <StyledListItem onClick={this.handleOpenNewTabRepository}>
-                <Avatar alt={release.repository.name} src={release.repository.avatar} />
+                <Avatar
+                  alt={release.repository.name}
+                  src={release.repository.avatar}
+                />
                 <ListItemText
                   primary={release.repository.name}
                   secondary={
                     <Typography color="secondary" component="span">
-                      Released this <TimeAgo datetime={new Date(release.publishedAt)} />
+                      Released this{' '}
+                      <TimeAgo datetime={new Date(release.publishedAt)} />
                     </Typography>
                   }
                 />
               </StyledListItem>
             </List>
             <Content>
-              <StyledTitle type="title" component="a" href={release.htmlUrl} target="_blank">
+              <StyledTitle
+                type="title"
+                component="a"
+                href={release.htmlUrl}
+                target="_blank"
+              >
                 {release.tagName}
               </StyledTitle>
               {!changelog && (
-                <Typography type="caption">There is no changelog for this release</Typography>
+                <Typography type="caption">
+                  There is no changelog for this release
+                </Typography>
               )}
               {changelog && (
                 <Typography
@@ -119,7 +136,11 @@ ReleaseContent.defaultProps = {
 };
 
 const releaseQuery = gql`
-  query allReleases($repositoryType: String!, $repositoryName: String!, $releaseTagName: String!) {
+  query allReleases(
+    $repositoryType: String!
+    $repositoryName: String!
+    $releaseTagName: String!
+  ) {
     allReleases(
       filter: {
         tagName: $releaseTagName

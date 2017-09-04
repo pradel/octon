@@ -1,7 +1,17 @@
 {
   "extends": "airbnb",
   "parser": "babel-eslint",
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all"
+      }
+    ],
     "no-param-reassign": 0,
     "react/forbid-prop-types": 0,
     "react/jsx-filename-extension": 0

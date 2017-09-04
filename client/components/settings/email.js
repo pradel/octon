@@ -31,7 +31,7 @@ class SettingsEmail extends Component {
     };
   }
 
-  handleChangeUserEmail = (e) => {
+  handleChangeUserEmail = e => {
     e.preventDefault();
     const { email } = this.state;
     if (this.props.user.email !== email) {
@@ -111,4 +111,6 @@ const updateUserMutationOptions = {
   }),
 };
 
-export default graphql(updateUserMutation, updateUserMutationOptions)(SettingsEmail);
+export default graphql(updateUserMutation, updateUserMutationOptions)(
+  SettingsEmail
+);

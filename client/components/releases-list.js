@@ -23,8 +23,13 @@ const StyledLoadMore = styled.div`
 const ReleasesList = ({ releases, loading, loadMoreReleases }) => (
   <List>
     {loading && <Loading />}
-    {!loading && releases.length === 0 && <StyledNoReleases>No recent releases</StyledNoReleases>}
-    {releases.map(release => <ReleasesListItem key={release.id} release={release} />)}
+    {!loading &&
+    releases.length === 0 && (
+      <StyledNoReleases>No recent releases</StyledNoReleases>
+    )}
+    {releases.map(release => (
+      <ReleasesListItem key={release.id} release={release} />
+    ))}
     {releases.length > 0 && (
       <StyledLoadMore>
         <Button raised onClick={loadMoreReleases}>
@@ -83,7 +88,10 @@ const releasesQueryOptions = {
             return previousResult;
           }
           return Object.assign({}, previousResult, {
-            allReleases: [...previousResult.allReleases, ...fetchMoreResult.allReleases],
+            allReleases: [
+              ...previousResult.allReleases,
+              ...fetchMoreResult.allReleases,
+            ],
           });
         },
       });

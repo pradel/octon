@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-export default (props = {}) => (ComposedComponent) => {
+export default (props = {}) => ComposedComponent => {
   class WithUser extends Component {
     static propTypes = {
       loading: PropTypes.bool,

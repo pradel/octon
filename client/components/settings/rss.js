@@ -21,7 +21,9 @@ class Rss extends Component {
     return (
       <List subheader={<ListSubheader>Rss</ListSubheader>}>
         <ListItem>
-          <ListItemText primary={`${process.env.BASE_URL}/users/${user.id}/rss`} />
+          <ListItemText
+            primary={`${process.env.BASE_URL}/users/${user.id}/rss`}
+          />
           <ListItemSecondaryAction>
             <IconButton onClick={this.handleCopyRss} title="Copy to clipboard">
               <ContentCopy />

@@ -1,7 +1,10 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, injectGlobal } from 'styled-components';
-import { getDefaultContext, setDefaultContext } from '../lib/mui-create-default-context';
+import {
+  getDefaultContext,
+  setDefaultContext,
+} from '../lib/mui-create-default-context';
 
 // Global styles
 // eslint-disable-next-line

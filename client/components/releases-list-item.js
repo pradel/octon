@@ -24,9 +24,11 @@ class ReleasesListItem extends Component {
   handleClick = () => {
     const { release } = this.props;
     Router.push(
-      `/release?repositoryType=${release.repository.type}&repositoryName=${release.repository
+      `/release?repositoryType=${release.repository
+        .type}&repositoryName=${release.repository
         .name}&releaseTagName=${release.tagName}`,
-      `/release/${release.repository.type}/${release.repository.name}/${release.tagName}`,
+      `/release/${release.repository.type}/${release.repository
+        .name}/${release.tagName}`
     );
   };
 
@@ -34,7 +36,10 @@ class ReleasesListItem extends Component {
     // TODO active class see https://github.com/zeit/next.js/issues/2032
     const { release } = this.props;
     return (
-      <StyledListItem button /* className={classnames({ active })} */ onClick={this.handleClick}>
+      <StyledListItem
+        button
+        /* className={classnames({ active })} */ onClick={this.handleClick}
+      >
         <Avatar alt={release.repository.name} src={release.repository.avatar} />
         <ListItemText
           primary={release.repository.name}

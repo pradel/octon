@@ -65,7 +65,7 @@ class Index extends Component {
               token
             }
           }
-        `,
+        `
         );
         auth.setToken(data.authenticateGithubUser.token);
         Router.push('/app');
@@ -82,7 +82,7 @@ class Index extends Component {
   handleLogin = () => {
     window.location.replace(
       `https://github.com/login/oauth/authorize?client_id=${process.env
-        .GITHUB_CLIENT_ID}&scope=user:email`,
+        .GITHUB_CLIENT_ID}&scope=user:email`
     );
   };
 

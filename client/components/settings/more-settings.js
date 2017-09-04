@@ -20,7 +20,7 @@ class SettingsMore extends Component {
   handleDeleteAccount = async () => {
     const confirm = await octonConfirm(
       'Delete my account',
-      'Do you really want to delete your account? (this action is irreversible)',
+      'Do you really want to delete your account? (this action is irreversible)'
     );
     if (confirm) {
       // TODO handle error
@@ -69,4 +69,6 @@ const updateUserMutationOptions = {
   }),
 };
 
-export default graphql(updateUserMutation, updateUserMutationOptions)(SettingsMore);
+export default graphql(updateUserMutation, updateUserMutationOptions)(
+  SettingsMore
+);

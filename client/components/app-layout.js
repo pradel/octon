@@ -69,7 +69,9 @@ class AppLayout extends Component {
         <Alert />
         <Header user={user} />
         <ColLeft>
-          {loadingSync && <Loading text="Your stars are importing please wait a minute..." />}
+          {loadingSync && (
+            <Loading text="Your stars are importing please wait a minute..." />
+          )}
           {!loadingSync && <ReleasesList user={user} />}
         </ColLeft>
         <ColRight>{children}</ColRight>
