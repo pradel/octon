@@ -87,11 +87,13 @@ const releasesQueryOptions = {
           if (!fetchMoreResult) {
             return previousResult;
           }
-          return {...previousResult, 
+          return {
+            ...previousResult,
             allReleases: [
               ...previousResult.allReleases,
               ...fetchMoreResult.allReleases,
-            ]};
+            ],
+          };
         },
       });
     },

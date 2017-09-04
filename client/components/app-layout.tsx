@@ -34,12 +34,12 @@ const ColRight = styled.div`
 `;
 
 interface Props {
-  user?: any
-  children?: any
+  user?: any;
+  children?: any;
 }
 
 interface State {
-  loadingSync: boolean
+  loadingSync: boolean;
 }
 
 class AppLayout extends React.Component<Props, State> {

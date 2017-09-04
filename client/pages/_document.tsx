@@ -31,14 +31,16 @@ export default class MyDocument extends Document {
         <Component {...props} />
       </JssProvider>
     ));
-    
+
     return {
       ...page,
       stylesContext: context,
       styles: (
         <style
           id="jss-server-side"
-          dangerouslySetInnerHTML={{ __html: context.sheetsRegistry.toString() }}
+          dangerouslySetInnerHTML={{
+            __html: context.sheetsRegistry.toString(),
+          }}
         />
       ),
     };

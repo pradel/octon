@@ -46,8 +46,10 @@ class SettingsEmail extends React.Component<{}, State> {
     // TODO handle error
   };
 
-  public handleChangeEmail = event => this.setState({ email: event.target.value });
-  public handleEditEmail = () => this.setState({ editEmail: !this.state.editEmail });
+  public handleChangeEmail = event =>
+    this.setState({ email: event.target.value });
+  public handleEditEmail = () =>
+    this.setState({ editEmail: !this.state.editEmail });
 
   public render() {
     const { user } = this.props;

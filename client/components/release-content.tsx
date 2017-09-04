@@ -22,12 +22,12 @@ const StyledTitle: any = styled(Typography)`
 `;
 
 interface Props {
-  loading?: boolean
-  release?: any
+  loading?: boolean;
+  release?: any;
 }
 
 interface State {
-  changelog: string
+  changelog: string;
 }
 
 class ReleaseContent extends React.Component<Props, State> {

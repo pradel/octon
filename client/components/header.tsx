@@ -31,12 +31,12 @@ const StyledAvatar = styled.div`
 `;
 
 interface Props {
-  user: any
+  user: any;
 }
 
 interface State {
-  menuOpen: boolean
-  menuAnchorEl: any
+  menuOpen: boolean;
+  menuAnchorEl: any;
 }
 
 class Header extends React.Component<Props, State> {
@@ -51,7 +51,7 @@ class Header extends React.Component<Props, State> {
       menuAnchorEl: event && event.currentTarget,
     });
 
-    public handleSettings = () => {
+  public handleSettings = () => {
     Router.push('/settings');
   };
 

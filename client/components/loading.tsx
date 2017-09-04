@@ -8,7 +8,7 @@ const LoadingContainer = styled.div`
 `;
 
 interface Props {
-  text?: string
+  text?: string;
 }
 
 const Loading = ({ text }: Props) => (
