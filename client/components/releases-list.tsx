@@ -32,7 +32,7 @@ const ReleasesList = ({ releases, loading, loadMoreReleases }) => (
     ))}
     {releases.length > 0 && (
       <StyledLoadMore>
-        <Button raised onClick={loadMoreReleases}>
+        <Button raised={true} onClick={loadMoreReleases}>
           Load more
         </Button>
       </StyledLoadMore>
@@ -87,12 +87,11 @@ const releasesQueryOptions = {
           if (!fetchMoreResult) {
             return previousResult;
           }
-          return Object.assign({}, previousResult, {
+          return {...previousResult, 
             allReleases: [
               ...previousResult.allReleases,
               ...fetchMoreResult.allReleases,
-            ],
-          });
+            ]};
         },
       });
     },

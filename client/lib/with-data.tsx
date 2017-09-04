@@ -5,12 +5,12 @@ import initApollo from './init-apollo';
 
 export default ComposedComponent =>
   class WithData extends React.Component {
-    static displayName = `WithData(${ComposedComponent.displayName})`;
-    static propTypes = {
+    public static displayName = `WithData(${ComposedComponent.displayName})`;
+    public static propTypes = {
       serverState: PropTypes.object.isRequired,
     };
 
-    static async getInitialProps(ctx) {
+    public static async getInitialProps(ctx) {
       let serverState = {};
 
       // Evaluate the composed component's getInitialProps()
@@ -56,7 +56,7 @@ export default ComposedComponent =>
       this.apollo = initApollo(this.props.serverState);
     }
 
-    render() {
+    public render() {
       return (
         <ApolloProvider client={this.apollo}>
           <ComposedComponent {...this.props} />

@@ -21,10 +21,24 @@ const StyledTitle = styled(Typography)`
   margin-bottom: 20px !important;
 `;
 
-class ReleaseContent extends React.Component {
-  state = { changelog: null };
+interface Props {
+  loading?: boolean
+  release?: any
+}
 
-  componentWillReceiveProps(nextProps) {
+interface State {
+  changelog: string
+}
+
+class ReleaseContent extends React.Component<Props, State> {
+  private static defaultProps = {
+    release: null,
+    loading: false,
+  };
+
+  public state = { changelog: null };
+
+  public componentWillReceiveProps(nextProps) {
     if (nextProps.release) {
       if (
         !this.props.release ||
@@ -35,11 +49,11 @@ class ReleaseContent extends React.Component {
     }
   }
 
-  handleOpenNewTabRepository = () => {
+  public handleOpenNewTabRepository = () => {
     window.open(this.props.release.repository.htmlUrl, '_blank');
   };
 
-  loadReleaseInfo = async release => {
+  public loadReleaseInfo = async release => {
     this.setState({ changelog: null });
     const url = `https://api.github.com/repos/${release.repository
       .name}/releases`;
@@ -53,7 +67,7 @@ class ReleaseContent extends React.Component {
     }
   };
 
-  render() {
+  public render() {
     // TODO 404
     const { release, loading } = this.props;
     const { changelog } = this.state;

@@ -5,17 +5,17 @@ import gql from 'graphql-tag';
 
 export default (props = {}) => ComposedComponent => {
   class WithUser extends React.Component {
-    static propTypes = {
+    public static propTypes = {
       loading: PropTypes.bool,
       user: PropTypes.object,
     };
 
-    static defaultProps = {
+    public static defaultProps = {
       loading: false,
       user: null,
     };
 
-    render() {
+    public render() {
       // TODO handle error
       // TODO nice loading
       const { loading, ...rest } = this.props;

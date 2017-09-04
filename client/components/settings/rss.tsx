@@ -11,12 +11,12 @@ import IconButton from 'material-ui/IconButton';
 import ContentCopy from 'material-ui-icons/ContentCopy';
 
 class Rss extends React.Component {
-  handleCopyRss = () => {
+  public handleCopyRss = () => {
     copy(`${process.env.BASE_URL}/users/${this.props.user.id}/rss`);
     // TODO show Snackbar text copied
   };
 
-  render() {
+  public render() {
     const { user } = this.props;
     return (
       <List subheader={<ListSubheader>Rss</ListSubheader>}>

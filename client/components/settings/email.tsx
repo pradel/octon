@@ -36,7 +36,7 @@ class SettingsEmail extends React.Component<{}, State> {
     };
   }
 
-  handleChangeUserEmail = e => {
+  public handleChangeUserEmail = e => {
     e.preventDefault();
     const { email } = this.state;
     if (this.props.user.email !== email) {
@@ -46,10 +46,10 @@ class SettingsEmail extends React.Component<{}, State> {
     // TODO handle error
   };
 
-  handleChangeEmail = event => this.setState({ email: event.target.value });
-  handleEditEmail = () => this.setState({ editEmail: !this.state.editEmail });
+  public handleChangeEmail = event => this.setState({ email: event.target.value });
+  public handleEditEmail = () => this.setState({ editEmail: !this.state.editEmail });
 
-  render() {
+  public render() {
     const { user } = this.props;
     const { editEmail, email } = this.state;
 

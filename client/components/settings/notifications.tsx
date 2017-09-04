@@ -11,7 +11,7 @@ import List, {
 import Switch from 'material-ui/Switch';
 
 class SettingsNotifications extends React.Component {
-  handleChangeNotification = (e, a) => {
+  public handleChangeNotification = (e, a) => {
     const params = {
       dailyNotification: this.props.user.dailyNotification,
       weeklyNotification: this.props.user.weeklyNotification,
@@ -21,7 +21,7 @@ class SettingsNotifications extends React.Component {
     // TODO handle error
   };
 
-  render() {
+  public render() {
     const { user } = this.props;
     return (
       <List subheader={<ListSubheader>Notifications</ListSubheader>}>

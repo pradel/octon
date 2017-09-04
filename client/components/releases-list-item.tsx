@@ -21,7 +21,7 @@ const StyledListItem = styled(ListItem)`
 const StyledLink = styled.a`font-weight: bold;`;
 
 class ReleasesListItem extends React.Component {
-  handleClick = () => {
+  public handleClick = () => {
     const { release } = this.props;
     Router.push(
       `/release?repositoryType=${release.repository
@@ -32,12 +32,12 @@ class ReleasesListItem extends React.Component {
     );
   };
 
-  render() {
+  public render() {
     // TODO active class see https://github.com/zeit/next.js/issues/2032
     const { release } = this.props;
     return (
       <StyledListItem
-        button
+        button={true}
         /* className={classnames({ active })} */ onClick={this.handleClick}
       >
         <Avatar alt={release.repository.name} src={release.repository.avatar} />

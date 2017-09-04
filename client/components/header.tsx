@@ -30,28 +30,37 @@ const StyledAvatar = styled.div`
   border: 1px solid #1fe8af;
 `;
 
-class Header extends React.Component {
-  state = {
+interface Props {
+  user: any
+}
+
+interface State {
+  menuOpen: boolean
+  menuAnchorEl: any
+}
+
+class Header extends React.Component<Props, State> {
+  public state = {
     menuOpen: false,
     menuAnchorEl: null,
   };
 
-  handleToggleMenu = event =>
+  public handleToggleMenu = event =>
     this.setState({
       menuOpen: !this.state.menuOpen,
       menuAnchorEl: event && event.currentTarget,
     });
 
-  handleSettings = () => {
+    public handleSettings = () => {
     Router.push('/settings');
   };
 
-  handleLogout = () => {
+  public handleLogout = () => {
     auth.unsetToken();
     Router.push('/');
   };
 
-  render() {
+  public render() {
     const { user } = this.props;
     const { menuAnchorEl, menuOpen } = this.state;
     return (
@@ -80,9 +89,5 @@ class Header extends React.Component {
     );
   }
 }
-
-Header.propTypes = {
-  user: PropTypes.object.isRequired,
-};
 
 export default Header;

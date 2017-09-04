@@ -46,7 +46,7 @@ injectGlobal`
 `;
 
 class Index extends React.Component {
-  async componentDidMount() {
+  public async componentDidMount() {
     const githubCode = window.location.search
       .substring(1)
       .split('&')[0]
@@ -70,7 +70,6 @@ class Index extends React.Component {
         auth.setToken(data.authenticateGithubUser.token);
         Router.push('/app');
       } catch (err) {
-        console.log(err);
         if (err.response.errors[0].functionError) {
           alert(err.response.errors[0].functionError);
         } else {
@@ -80,14 +79,14 @@ class Index extends React.Component {
     }
   }
 
-  handleLogin = () => {
+  public handleLogin = () => {
     window.location.replace(
       `https://github.com/login/oauth/authorize?client_id=${process.env
         .GITHUB_CLIENT_ID}&scope=user:email`
     );
   };
 
-  render() {
+  public render() {
     return (
       <div>
         <Header handleLogin={this.handleLogin} />

@@ -4,7 +4,7 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import { getDefaultContext } from '../lib/mui-create-default-context';
 
 class Theme extends React.Component {
-  componentDidMount() {
+  public componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
@@ -12,7 +12,7 @@ class Theme extends React.Component {
     }
   }
 
-  render() {
+  public render() {
     const { styleManager, theme } = getDefaultContext();
     const { children } = this.props;
     return (

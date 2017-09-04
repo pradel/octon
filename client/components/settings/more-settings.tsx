@@ -17,11 +17,11 @@ interface State {
 }
 
 class SettingsMore extends React.Component<{}, State> {
-  state = { showMore: false };
+  public state = { showMore: false };
 
-  handleShowMore = () => this.setState({ showMore: true });
+  public handleShowMore = () => this.setState({ showMore: true });
 
-  handleDeleteAccount = async () => {
+  public handleDeleteAccount = async () => {
     const confirm = await octonConfirm(
       'Delete my account',
       'Do you really want to delete your account? (this action is irreversible)'
@@ -35,7 +35,7 @@ class SettingsMore extends React.Component<{}, State> {
     }
   };
 
-  render() {
+  public render() {
     const { showMore } = this.state;
     return (
       <Content>

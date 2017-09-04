@@ -18,26 +18,26 @@ class Alert extends React.Component {
     global.octonConfirm = this.showConfirm;
   }
 
-  close = () => this.setState({ isOpen: false });
+  public close = () => this.setState({ isOpen: false });
 
-  confirm = () => {
+  public confirm = () => {
     this.close();
     this.resolve(true);
   };
 
-  cancel = () => {
+  public cancel = () => {
     this.close();
     this.resolve(false);
   };
 
-  showConfirm = (title, text) =>
+  public showConfirm = (title, text) =>
     new Promise((resolve, reject) => {
       this.setState({ isOpen: true, isConfirm: true, text, title });
       this.resolve = resolve;
       this.reject = reject;
     });
 
-  render() {
+  public render() {
     const { isOpen, title, text } = this.state;
     return (
       <Dialog open={isOpen} onRequestClose={this.handleRequestClose}>

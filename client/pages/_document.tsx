@@ -26,7 +26,7 @@ injectGlobal`
 `;
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  public static async getInitialProps(ctx) {
     setDefaultContext();
     const page = ctx.renderPage();
     const styleContext = getDefaultContext();
@@ -40,7 +40,7 @@ export default class MyDocument extends Document {
     };
   }
 
-  render() {
+  public render() {
     const sheet = new ServerStyleSheet();
     const main = sheet.collectStyles(<Main />);
     const styleTags = sheet.getStyleElement();

@@ -33,10 +33,19 @@ const ColRight = styled.div`
   padding-bottom: 40px;
 `;
 
-class AppLayout extends React.Component {
-  state = { loadingSync: false };
+interface Props {
+  user?: any
+  children?: any
+}
 
-  componentDidMount() {
+interface State {
+  loadingSync: boolean
+}
+
+class AppLayout extends React.Component<Props, State> {
+  public state = { loadingSync: false };
+
+  public componentDidMount() {
     if (!this.props.user) {
       Router.push('/');
     } else if (!this.props.user.lastGithubSyncAt) {
@@ -44,7 +53,7 @@ class AppLayout extends React.Component {
     }
   }
 
-  synchronizeUserStars = async () => {
+  public synchronizeUserStars = async () => {
     this.setState({ loadingSync: true });
     const data = await fetch('/api/sync-stars', {
       method: 'POST',
@@ -60,7 +69,7 @@ class AppLayout extends React.Component {
     this.setState({ loadingSync: false });
   };
 
-  render() {
+  public render() {
     const { user, children } = this.props;
     if (!user) {
       return null;
@@ -81,15 +90,5 @@ class AppLayout extends React.Component {
     );
   }
 }
-
-AppLayout.propTypes = {
-  user: PropTypes.object,
-  children: PropTypes.node,
-};
-
-AppLayout.defaultProps = {
-  user: null,
-  children: null,
-};
 
 export default compose(withUser())(AppLayout);
