@@ -4,7 +4,7 @@ import Head from 'next/head';
 import * as find from 'lodash/find';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import marked from 'marked';
+import * as marked from 'marked';
 import styled from 'styled-components';
 import Avatar from 'material-ui/Avatar';
 import Typography from 'material-ui/Typography';
@@ -16,7 +16,7 @@ const Content = styled.div`padding: 0 16px;`;
 
 const StyledListItem = styled(ListItem)`cursor: pointer;`;
 
-const StyledTitle = styled(Typography)`
+const StyledTitle: any = styled(Typography)`
   margin-top: 10px !important;
   margin-bottom: 20px !important;
 `;
@@ -57,7 +57,7 @@ class ReleaseContent extends React.Component<Props, State> {
     this.setState({ changelog: null });
     const url = `https://api.github.com/repos/${release.repository
       .name}/releases`;
-    let data = await fetch(url);
+    let data: any = await fetch(url);
     data = await data.json();
     if (data && data.length > 0) {
       const changelog = find(data, elem => elem.tag_name === release.tagName);
@@ -138,16 +138,6 @@ class ReleaseContent extends React.Component<Props, State> {
     );
   }
 }
-
-ReleaseContent.propTypes = {
-  release: PropTypes.object,
-  loading: PropTypes.bool,
-};
-
-ReleaseContent.defaultProps = {
-  release: null,
-  loading: false,
-};
 
 const releaseQuery = gql`
   query allReleases(

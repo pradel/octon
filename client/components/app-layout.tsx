@@ -3,8 +3,8 @@ import * as PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import Router from 'next/router';
 import styled from 'styled-components';
+import withRoot from '../lib/with-root';
 import withUser from '../lib/with-user';
-import Theme from '../lib/theme';
 import Alert from '../lib/alert';
 import Header from '../components/header';
 import Loading from '../components/loading';
@@ -76,7 +76,7 @@ class AppLayout extends React.Component<Props, State> {
     }
     const { loadingSync } = this.state;
     return (
-      <Theme>
+      <div>
         <Alert />
         <Header user={user} />
         <ColLeft>
@@ -86,9 +86,9 @@ class AppLayout extends React.Component<Props, State> {
           {!loadingSync && <ReleasesList user={user} />}
         </ColLeft>
         <ColRight>{children}</ColRight>
-      </Theme>
+      </div>
     );
   }
 }
 
-export default compose(withUser())(AppLayout);
+export default compose(withRoot, withUser())(AppLayout);

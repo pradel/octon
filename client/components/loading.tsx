@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CircularProgress } from 'material-ui/Progress';
 
@@ -8,19 +7,15 @@ const LoadingContainer = styled.div`
   margin-top: 40px;
 `;
 
-const Loading = ({ text }) => (
+interface Props {
+  text?: string
+}
+
+const Loading = ({ text }: Props) => (
   <LoadingContainer>
     <CircularProgress />
     {text && <p>{text}</p>}
   </LoadingContainer>
 );
-
-Loading.propTypes = {
-  text: PropTypes.string,
-};
-
-Loading.defaultProps = {
-  text: null,
-};
 
 export default Loading;

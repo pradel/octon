@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet, injectGlobal } from 'styled-components';
-import {
-  getDefaultContext,
-  setDefaultContext,
-} from '../lib/mui-create-default-context';
+import { JssProvider } from 'react-jss';
+import getContext from '../lib/mui-get-context';
 
 // Global styles
 // tslint:disable-next-line
@@ -27,15 +25,21 @@ injectGlobal`
 
 export default class MyDocument extends Document {
   public static async getInitialProps(ctx) {
-    setDefaultContext();
-    const page = ctx.renderPage();
-    const styleContext = getDefaultContext();
+    const context = getContext();
+    const page = ctx.renderPage(Component => props => (
+      <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
+        <Component {...props} />
+      </JssProvider>
+    ));
+    
     return {
       ...page,
+      stylesContext: context,
       styles: (
-        <style id="jss-server-side" type="text/css">
-          {styleContext.styleManager.sheetsToString()}
-        </style>
+        <style
+          id="jss-server-side"
+          dangerouslySetInnerHTML={{ __html: context.sheetsRegistry.toString() }}
+        />
       ),
     };
   }

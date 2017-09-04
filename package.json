@@ -31,7 +31,7 @@
     "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
-    "material-ui": "v1.0.0-alpha.21",
+    "material-ui": "v1.0.0-beta.8",
     "material-ui-icons": "^1.0.0-beta.5",
     "mjml": "^3.3.3",
     "next": "^3.2.1",
